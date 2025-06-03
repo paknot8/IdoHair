@@ -28,15 +28,11 @@
         .text-shadow-custom {
             text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
         }
-        .gallery-img {
-            height: 300px; /* Fixed height for gallery images */
-            object-fit: cover;
-            width: 100%;
-        }
         .product-img-fit {
             height: 160px; /* Adjusted height for product images to fit better */
             object-fit: contain; /* Ensure image fits within its box */
             width: 100%;
+            background-color: transparent; /* Ensure transparent background */
         }
         /* Specific styling for the header as per PDF */
         .pdf-header {
@@ -45,11 +41,13 @@
         .pdf-header .nav-link-custom {
             padding-bottom: 4px; /* Space for border-bottom */
             transition: border-color 0.3s ease-in-out, color 0.3s ease-in-out;
+            text-decoration: none; /* Ensure no default underline */
         }
         .pdf-header .nav-link-custom.active,
         .pdf-header .nav-link-custom:hover {
-            border-bottom: 2px solid #333333; /* Dark border on active/hover */
+            border-bottom: none; /* No underline on active/hover */
             color: #333333; /* Ensure text remains dark */
+            text-decoration: none; /* Explicitly no underline */
         }
 
         /* Specific styling for the hero banner as per PDF */
@@ -87,15 +85,22 @@
             color: white;
             padding: 2rem;
         }
+        .quote-banner .quote-content {
+            background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background for text */
+            padding: 20px;
+            border-radius: 8px;
+        }
         .quote-banner h2 {
             font-size: 2.5rem; /* Large font size */
             line-height: 1.4;
-            font-weight: 300; /* Light font weight */
+            font-weight: 700; /* Bold font weight */
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6); /* Text shadow */
         }
         .quote-banner p {
             font-size: 1.125rem;
-            font-weight: 300;
+            font-weight: 700; /* Bold font weight */
             margin-top: 1rem;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6); /* Text shadow */
         }
 
         /* Testimonials section specific styling */
@@ -104,6 +109,12 @@
             border-radius: 0.5rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 1.5rem;
+            display: flex; /* Enable flexbox for vertical alignment */
+            flex-direction: column; /* Stack items vertically */
+            height: 100%; /* Ensure cards take full height in grid */
+        }
+        .testimonial-card .card-text {
+            flex-grow: 1; /* Allow text to grow and push stars down */
         }
         .testimonial-img {
             width: 100px;
@@ -111,6 +122,125 @@
             border-radius: 9999px; /* Fully rounded for profile pictures */
             object-fit: cover;
             margin: 0 auto 1rem auto;
+        }
+        .testimonial-stars {
+            font-size: 1.5rem; /* Larger stars */
+        }
+
+        /* Gallery Before/After Hover Effect & Carousel Styling */
+        .gallery-carousel-container {
+            position: relative;
+            overflow: hidden; /* Hide scrollbar */
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        .gallery-carousel-container::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+
+        .gallery-track {
+            display: flex;
+            scroll-snap-type: x mandatory;
+            overflow-x: scroll; /* Enable horizontal scrolling */
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            scroll-behavior: smooth; /* Smooth scroll on button click */
+        }
+        .gallery-track > * {
+            flex-shrink: 0; /* Prevent items from shrinking */
+            scroll-snap-align: start;
+            width: 100%; /* Default to full width for small screens */
+            padding-right: 1.5rem; /* Add gap between items */
+        }
+        .gallery-track > *:last-child {
+            padding-right: 0; /* No padding on the last item */
+        }
+        @media (min-width: 640px) { /* sm breakpoint */
+            .gallery-track > * {
+                width: calc(50% - 0.75rem); /* Two items per row with gap */
+            }
+        }
+        @media (min-width: 1024px) { /* lg breakpoint */
+            .gallery-track > * {
+                width: calc(25% - 1.125rem); /* Four items per row with gap (3 gaps of 1.5rem / 4 items) */
+            }
+        }
+
+        .gallery-item-wrapper {
+            position: relative;
+            overflow: hidden; /* Hide overflow from zoom */
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            height: 450px; /* Increased height for the gallery items */
+        }
+        .gallery-item-wrapper img {
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .gallery-item-wrapper .img-before {
+            opacity: 1;
+            z-index: 2;
+        }
+        .gallery-item-wrapper .img-after {
+            opacity: 0;
+            z-index: 1; /* Start behind before image */
+            transform: scale(1.0); /* Initial scale */
+        }
+        .gallery-item-wrapper:hover .img-before {
+            opacity: 0;
+            transform: scale(0.9); /* Slight zoom out for before */
+        }
+        .gallery-item-wrapper:hover .img-after {
+            opacity: 1;
+            transform: scale(1.05); /* Zoom in for after */
+        }
+
+        /* Carousel Navigation Buttons */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px; /* Fixed width for circular button */
+            height: 40px; /* Fixed height for circular button */
+        }
+        .carousel-btn:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .carousel-btn-left {
+            left: 10px;
+        }
+        .carousel-btn-right {
+            right: 10px;
+        }
+
+        /* Socials Image Card Specific Styling */
+        .social-image-card {
+            width: 250px; /* Fixed width for consistency */
+            height: 350px; /* Adjusted height for a more vertical image */
+            position: relative;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0; /* Prevent shrinking in flex container */
+        }
+        .social-image-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
     </style>
 </head>
@@ -126,6 +256,7 @@
                         <li><a href="#home" class="nav-link-custom active">Home</a></li>
                         <li><a href="#behandelingen-sectie" class="nav-link-custom">Services</a></li>
                         <li><a href="#over-ons" class="nav-link-custom">Team</a></li>
+                        <li><a href="#socials" class="nav-link-custom">Socials</a></li> <!-- Menu link aangepast naar Socials -->
                         <li><a href="#contact" class="nav-link-custom">Salon</a></li>
                         <li><a href="#producten-sectie" class="nav-link-custom">Products</a></li>
                         <li><a href="#contact" class="nav-link-custom">Contact</a></li>
@@ -143,33 +274,26 @@
     </section>
 
     <!-- Meet Ido Zeldenrust sectie (Team) -->
-    <section id="over-ons" class="w-full bg-white py-12 px-6 md:px-12">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 items-center gap-10">
-            <!-- Tekst links -->
+    <section id="over-ons" class="w-full bg-white flex flex-col md:flex-row items-stretch">
+        <!-- Text column -->
+        <div class="md:w-1/2 px-6 md:px-12 py-12 flex items-center">
             <div>
                 <h2 class="text-3xl md:text-4xl font-semibold text-gray-800 mb-6">Meet<br>Ido Zeldenrust</h2>
                 <p class="text-gray-600 text-lg leading-relaxed mb-4">
-                    Al 24 jaar staat Ido bekend om zijn kwaliteit, passie en enthousiasme voor het vak. Je kan hem kennen door zijn deelname aan Next Hair Guru. Zijn klanten noemen hem 'the hair magician' omdat hij vakmanschap beheerst en inspirerende creaties aflevert. Hij verzorgt artistieke, extravagante, klassieke en trendy creaties. Zijn doel is het creëren van de mooiste en meest diverse looks op een innovatieve manier. Hairextensions zijn daarbij zijn specialiteit. Zelfs de kat die rondloopt ontkomt niet aan Ido's creativiteit getuige de roze staart.
+                    Our founder, Manpreet, is a Registered Dietitian who is deeply passionate about educating people on how to maintain good health through nutritious food.
                 </p>
-                <h3 class="text-xl font-semibold text-gray-800 mb-3">Openingstijden</h3>
-                <ul class="text-gray-600 text-base mb-0">
-                    <li><strong>Dinsdag t/m Vrijdag:</strong> 09:30 - 19:00</li>
-                    <li><strong>Zaterdag:</strong> 09:00 - 18:00</li>
-                    <li><strong>Maandag & Zondag:</strong> Gesloten</li>
-                </ul>
             </div>
-
-            <!-- Foto rechts -->
-            <div>
-                <img src="https://i.ibb.co/d0VB9NP1/Ido-Knip.jpg" alt="Ido Zeldenrust knipt haar" class="w-full rounded shadow-lg">
-            </div>
+        </div>
+        <!-- Image column - now directly part of the section's flex items -->
+        <div class="md:w-1/2 flex-shrink-0">
+            <img src="https://i.ibb.co/d0VB9NP1/Ido-Knip.jpg" alt="Ido Zeldenrust knipt haar" class="w-full h-full object-cover">
         </div>
     </section>
 
     <!-- Haar behandelingen sectie (Services) -->
     <section id="behandelingen-sectie" class="bg-white py-16 px-6 md:px-12">
-        <div class="max-w-6xl mx-auto text-center">
-            <h2 class="text-3xl md:text-4xl font-semibold text-gray-800 mb-10">Haar<br>behandelingen</h2>
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-semibold text-gray-800 mb-10 text-left">Haar<br>behandelingen</h2>
             
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
                 <div class="relative">
@@ -186,27 +310,104 @@
                 </div>
             </div>
 
-            <p class="text-gray-600 text-lg">Need more information about your hairstyle?<br>We offer the above services.</p>
+            <p class="text-gray-600 text-lg text-center">Need more information about your hairstyle?<br>We offer the above services.</p>
         </div>
     </section>
 
-    <!-- Galerij by Ido Zeldenrust -->
+    <!-- Socials Sectie (voorheen Nieuwe Behandelingen Highlight Sectie) -->
+    <section id="socials" class="bg-white py-16 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-semibold text-gray-800 mb-10 text-center">Socials</h2> <!-- Titel aangepast -->
+            <div class="overflow-x-auto pb-4 relative gallery-carousel-container">
+                <div id="social-track" class="flex space-x-6 justify-center">
+                    <!-- Image Card 1 -->
+                    <div class="social-image-card">
+                        <img src="https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg" alt="Social Image 1">
+                        <div class="absolute inset-0 bg-black bg-opacity-30 flex flex-col items-center justify-center text-white text-center p-4">
+                            <p class="text-xl font-bold text-shadow-custom">Haarstyling Inspiratie</p>
+                        </div>
+                    </div>
+                    <!-- Image Card 2 -->
+                    <div class="social-image-card">
+                        <img src="https://images.pexels.com/photos/3992870/pexels-photo-3992870.jpeg" alt="Social Image 2">
+                        <div class="absolute inset-0 bg-black bg-opacity-30 flex flex-col items-center justify-center text-white text-center p-4">
+                            <p class="text-xl font-bold text-shadow-custom">Achter de Schermen</p>
+                        </div>
+                    </div>
+                    <!-- Image Card 3 -->
+                    <div class="social-image-card">
+                        <img src="https://images.pexels.com/photos/3762804/pexels-photo-3762804.jpeg" alt="Social Image 3">
+                        <div class="absolute inset-0 bg-black bg-opacity-30 flex flex-col items-center justify-center text-white text-center p-4">
+                            <p class="text-xl font-bold text-shadow-custom">Kleuringen & Highlights</p>
+                        </div>
+                    </div>
+                    <!-- Image Card 4 -->
+                    <div class="social-image-card">
+                        <img src="https://images.pexels.com/photos/3993460/pexels-photo-3993460.jpeg" alt="Social Image 4">
+                        <div class="absolute inset-0 bg-black bg-opacity-30 flex flex-col items-center justify-center text-white text-center p-4">
+                            <p class="text-xl font-bold text-shadow-custom">Extensions Show</p>
+                        </div>
+                    </div>
+                    <!-- Image Card 5 -->
+                    <div class="social-image-card">
+                        <img src="https://images.pexels.com/photos/3738343/pexels-photo-3738343.jpeg" alt="Social Image 5">
+                        <div class="absolute inset-0 bg-black bg-opacity-30 flex flex-col items-center justify-center text-white text-center p-4">
+                            <p class="text-xl font-bold text-shadow-custom">Stijlvolle Kapsels</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Navigatie pijlen -->
+                <button class="carousel-btn carousel-btn-left" onclick="scrollSocials(-1)">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+                <button class="carousel-btn carousel-btn-right" onclick="scrollSocials(1)">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="#contact" class="bg-black text-white font-semibold px-8 py-3 rounded-lg shadow-md hover:bg-gray-800 transition duration-300">BOOK APPOINTMENT</a>
+                <div class="mt-6 text-gray-700 text-lg">
+                    <span class="text-orange-500">★★★★★</span> 5.0 <span class="text-gray-500">based on 87 reviews</span>
+                </div>
+                <p class="text-gray-500 text-sm mt-2">salonized | <a href="#" class="text-gray-500 underline hover:text-gray-700">See all ></a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galerij sectie -->
     <section id="galerij" class="bg-white py-16 px-6 md:px-12">
         <div class="max-w-6xl mx-auto">
             <!-- Titelrij: Galerij en by Ido Zeldenrust -->
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 items-end mb-6">
-                <h2 class="text-5xl font-extrabold text-gray-800 col-span-2 sm:col-span-2">GALERIJ</h2>
+                <h2 class="text-5xl font-extrabold text-gray-800 col-span-2 sm:col-span-2 text-left">GALERIJ</h2>
                 <div class="col-span-2 sm:col-start-3 sm:col-span-2 text-right">
                     <p class="text-2xl sm:text-3xl font-extrabold text-gray-800 leading-tight">by<br>Ido<br>Zeldenrust</p>
                 </div>
             </div>
 
-            <!-- Foto grid -->
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                <img src="https://i.ibb.co/35RWQt5D/1-Before.jpg" alt="Gallery 1 Before" class="w-full h-80 object-cover rounded">
-                <img src="https://i.ibb.co/6JmVxP29/1-After.jpg" alt="Gallery 1 After" class="w-full h-80 object-cover rounded">
-                <img src="https://i.ibb.co/YBFqtc0Z/2-Before.jpg" alt="Gallery 2 Before" class="w-full h-80 object-cover rounded">
-                <img src="https://i.ibb.co/GQP28NvM/2-After.jpg" alt="Gallery 2 After" class="w-full h-80 object-cover rounded">
+            <!-- Foto grid met Before/After hover effect -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Voor & Na Paar 1 -->
+                <div class="gallery-item-wrapper">
+                    <img src="https://i.ibb.co/35RWQt5D/1-Before.jpg" alt="Before Foto 1" class="img-before">
+                    <img src="https://i.ibb.co/6JmVxP29/1-After.jpg" alt="After Foto 1" class="img-after">
+                </div>
+                <!-- Voor & Na Paar 2 -->
+                <div class="gallery-item-wrapper">
+                    <img src="https://i.ibb.co/YBFqtc0Z/2-Before.jpg" alt="Before Foto 2" class="img-before">
+                    <img src="https://i.ibb.co/GQP28NvM/2-After.jpg" alt="After Foto 2" class="img-after">
+                </div>
+                <!-- Voor & Na Paar 3 -->
+                <div class="gallery-item-wrapper">
+                    <img src="https://i.ibb.co/DD3FvwmH/3-Before.jpg" alt="Before Foto 3" class="img-before">
+                    <img src="https://i.ibb.co/5x6QtkcS/3-After.jpg" alt="After Foto 3" class="img-after">
+                </div>
+                <!-- Voor & Na Paar 4 -->
+                <div class="gallery-item-wrapper">
+                    <img src="https://i.ibb.co/DHMtDRYt/Man-Befire.jpg" alt="Before Foto 4" class="img-before">
+                    <img src="https://i.ibb.co/d0VB9NP1/Ido-Knip.jpg" alt="After Foto 4 (Ido Knip)" class="img-after">
+                </div>
             </div>
         </div>
     </section>
@@ -229,15 +430,15 @@
             <!-- Producten rechts -->
             <div class="grid grid-cols-3 gap-6 items-start text-center">
                 <div>
-                    <img src="https://images.pexels.com/photos/4465124/pexels-photo-4465124.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Conditioner Care" class="product-img-fit mx-auto mb-2 rounded">
+                    <img src="https://i.ibb.co/ZzRrgSZT/Conditioner.png" alt="Conditioner Care" class="product-img-fit mx-auto mb-2">
                     <p class="font-medium text-gray-800">Conditioner Care</p>
                 </div>
                 <div>
-                    <img src="https://images.pexels.com/photos/7692981/pexels-photo-7692981.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Hair mist" class="product-img-fit mx-auto mb-2 rounded">
+                    <img src="https://i.ibb.co/1tW3n7Tm/HairMist.png" alt="Hair mist" class="product-img-fit mx-auto mb-2">
                     <p class="font-medium text-gray-800">Hair mist</p>
                 </div>
                 <div>
-                    <img src="https://images.pexels.com/photos/2529375/pexels-photo-2529375.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Shampoo Care" class="product-img-fit mx-auto mb-2 rounded">
+                    <img src="https://i.ibb.co/99sYr1fW/Shampoo.png" alt="Shampoo Care" class="product-img-fit mx-auto mb-2">
                     <p class="font-medium text-gray-800">Shampoo Care</p>
                 </div>
             </div>
@@ -246,14 +447,14 @@
 
     <!-- Inspiratie Quote Banner -->
     <section class="quote-banner" style="background-image: url('https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg');">
-        <div>
-            <h2 class="font-light leading-relaxed mb-6">
+        <div class="quote-content">
+            <h2 class="font-bold leading-relaxed mb-6">
                 Wij geloven dat goed haar<br>
                 begint met luisteren, met<br>
                 aandacht voor jouw wensen<br>
                 en een stijl die bij je past
             </h2>
-            <p class="font-light">Ido Zeldenrust</p>
+            <p class="font-bold">Ido Zeldenrust</p>
         </div>
     </section>
 
@@ -262,12 +463,12 @@
         <div class="max-w-6xl mx-auto text-center">
             <h2 class="text-4xl font-extrabold text-gray-800 mb-12">Testimonials from clients</h2>
 
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-10 text-center">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-10 text-center items-stretch"> <!-- Added items-stretch for equal height cards -->
                 <!-- Jamie -->
                 <div class="testimonial-card">
                     <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Jamie Folsom Profile" class="testimonial-img">
                     <h3 class="text-xl font-bold text-gray-800">Jamie Folsom</h3>
-                    <p class="text-gray-600 mt-2 text-sm leading-relaxed">
+                    <p class="card-text text-gray-600 mt-2 text-sm leading-relaxed">
                         "Ik kom hier al 14 jaar met veel plezier.<br>
                         Elke keer weer word ik geholpen met<br>
                         dezelfde zorg en aandacht als de<br>
@@ -275,28 +476,28 @@
                         je wilt, en het resultaat is altijd precies<br>
                         goed. Het voelt vertrouwd."
                     </p>
-                    <div class="text-orange-500 mt-3 text-lg">★★★★★</div>
+                    <div class="text-orange-500 mt-3 testimonial-stars">★★★★★</div>
                 </div>
 
                 <!-- Ryan -->
                 <div class="testimonial-card">
                     <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Ryan Hughes Profile" class="testimonial-img">
                     <h3 class="text-xl font-bold text-gray-800">Ryan Hughes</h3>
-                    <p class="text-gray-600 mt-2 text-sm leading-relaxed">
+                    <p class="card-text text-gray-600 mt-2 text-sm leading-relaxed">
                         "Sinds een paar maanden kom ik hier,<br>
                         en ik was meteen op mijn gemak. Ze<br>
                         nemen de tijd, denken met je mee en<br>
                         geven eerlijk advies. Mijn haar voelt en<br>
                         zit beter dan ooit."
                     </p>
-                    <div class="text-orange-500 mt-3 text-lg">★★★★★</div>
+                    <div class="text-orange-500 mt-3 testimonial-stars">★★★★★</div>
                 </div>
 
                 <!-- Anthony -->
                 <div class="testimonial-card">
                     <img src="https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Anthony Garrett Profile" class="testimonial-img">
                     <h3 class="text-xl font-bold text-gray-800">Anthony Garrett</h3>
-                    <p class="text-gray-600 mt-2 text-sm leading-relaxed">
+                    <p class="card-text text-gray-600 mt-2 text-sm leading-relaxed">
                         "Ik ben hier drie jaar geleden<br>
                         terechtgekomen op aanraden van een<br>
                         vriendin, en ik wil nergens anders<br>
@@ -304,7 +505,7 @@
                         vriendelijk en het resultaat is altijd<br>
                         verzorgd en stijlvol."
                     </p>
-                    <div class="text-orange-500 mt-3 text-lg">★★★★★</div>
+                    <div class="text-orange-500 mt-3 testimonial-stars">★★★★★</div>
                 </div>
             </div>
         </div>
@@ -409,8 +610,9 @@
         const highlightNavLink = () => {
             let currentActive = '';
             sections.forEach(section => {
-                const sectionTop = section.offsetTop - document.querySelector('.pdf-header').offsetHeight - 50; // Adjusted offset
-                const sectionBottom = sectionTop + section.offsetHeight;
+                const headerHeight = document.querySelector('.pdf-header').offsetHeight;
+                const sectionTop = section.offsetTop - headerHeight - 50; // Adjusted offset
+                const sectionBottom = section.offsetTop + section.offsetHeight;
 
                 if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
                     currentActive = section.getAttribute('id');
@@ -427,6 +629,132 @@
 
         window.addEventListener('scroll', highlightNavLink);
         window.addEventListener('load', highlightNavLink); // Call on load to set initial active link
+
+        // Gallery Carousel Functionality
+        const galleryTrack = document.getElementById('gallery-track');
+        let isDragging = false;
+        let startX;
+        let scrollLeft;
+
+        if (galleryTrack) {
+            // Mouse drag functionality
+            galleryTrack.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                galleryTrack.classList.add('dragging');
+                startX = e.pageX - galleryTrack.offsetLeft;
+                scrollLeft = galleryTrack.scrollLeft;
+            });
+
+            galleryTrack.addEventListener('mouseleave', () => {
+                isDragging = false;
+                galleryTrack.classList.remove('dragging');
+            });
+
+            galleryTrack.addEventListener('mouseup', () => {
+                isDragging = false;
+                galleryTrack.classList.remove('dragging');
+            });
+
+            galleryTrack.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+                const x = e.pageX - galleryTrack.offsetLeft;
+                const walk = (x - startX) * 2; // Multiplier for faster scroll
+                galleryTrack.scrollLeft = scrollLeft - walk;
+            });
+
+            // Touch drag functionality
+            galleryTrack.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                startX = e.touches[0].pageX - galleryTrack.offsetLeft;
+                scrollLeft = galleryTrack.scrollLeft;
+            });
+
+            galleryTrack.addEventListener('touchend', () => {
+                isDragging = false;
+            });
+
+            galleryTrack.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                const x = e.touches[0].pageX - galleryTrack.offsetLeft;
+                const walk = (x - startX) * 2;
+                galleryTrack.scrollLeft = scrollLeft - walk;
+            });
+        }
+
+        // Scroll buttons functionality
+        window.scrollGallery = function(direction) {
+            if (galleryTrack) {
+                const scrollAmount = galleryTrack.offsetWidth / 2; // Scroll half the width of the container
+                galleryTrack.scrollBy({
+                    left: direction * scrollAmount,
+                    behavior: 'smooth'
+                });
+            }
+        };
+
+        // Socials Carousel Functionality (renamed from socialVideoTrack)
+        const socialsTrack = document.getElementById('social-track'); // Renamed ID
+        let isSocialsDragging = false;
+        let startSocialsX;
+        let scrollSocialsLeft;
+
+        if (socialsTrack) {
+            // Mouse drag functionality
+            socialsTrack.addEventListener('mousedown', (e) => {
+                isSocialsDragging = true;
+                socialsTrack.classList.add('dragging');
+                startSocialsX = e.pageX - socialsTrack.offsetLeft;
+                scrollSocialsLeft = socialsTrack.scrollLeft;
+            });
+
+            socialsTrack.addEventListener('mouseleave', () => {
+                isSocialsDragging = false;
+                socialsTrack.classList.remove('dragging');
+            });
+
+            socialsTrack.addEventListener('mouseup', () => {
+                isSocialsDragging = false;
+                socialsTrack.classList.remove('dragging');
+            });
+
+            socialsTrack.addEventListener('mousemove', (e) => {
+                if (!isSocialsDragging) return;
+                e.preventDefault();
+                const x = e.pageX - socialsTrack.offsetLeft;
+                const walk = (x - startSocialsX) * 2; // Multiplier for faster scroll
+                socialsTrack.scrollLeft = scrollSocialsLeft - walk;
+            });
+
+            // Touch drag functionality
+            socialsTrack.addEventListener('touchstart', (e) => {
+                isSocialsDragging = true;
+                startSocialsX = e.touches[0].pageX - socialsTrack.offsetLeft;
+                scrollSocialsLeft = socialsTrack.scrollLeft;
+            });
+
+            socialsTrack.addEventListener('touchend', () => {
+                isSocialsDragging = false;
+            });
+
+            socialsTrack.addEventListener('touchmove', (e) => {
+                if (!isSocialsDragging) return;
+                const x = e.touches[0].pageX - socialsTrack.offsetLeft;
+                const walk = (x - startSocialsX) * 2;
+                socialsTrack.scrollLeft = scrollSocialsLeft - walk;
+            });
+        }
+
+        // Scroll buttons functionality for socials gallery
+        window.scrollSocials = function(direction) { // Renamed function
+            if (socialsTrack) {
+                const scrollAmount = socialsTrack.offsetWidth / 2; // Scroll half the width of the container
+                socialsTrack.scrollBy({
+                    left: direction * scrollAmount,
+                    behavior: 'smooth'
+                });
+            }
+        };
     </script>
 
 </body>
