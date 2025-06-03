@@ -3,494 +3,430 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ido Hair - One-Scroll Prototype</title>
+    <title>Ido Hair</title>
     <meta name="description" content="Welkom bij Ido Hair – jouw persoonlijke kapper voor authentieke kapsels en professionele haarverzorging. Maak vandaag nog een afspraak!">
     
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons for social media -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
-        html {
-            scroll-behavior: smooth;
-        }
+        /* Custom styles for the PDF-inspired design */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #FFFFFF;
-            color: #333333;
+            color: #333333; /* Dark gray for general text */
         }
-        .bg-olive-dark {
-            background-color: #556B2F !important; /* Donker Olijfgroen */
+        .text-gold-custom {
+            color: #FFD700; /* Custom gold color */
         }
-        .text-gold {
-            color: #FFD700 !important; /* Goud */
+        .bg-olive-dark-custom {
+            background-color: #3A3A1F; /* Custom dark olive green for sections */
         }
-        .border-gold {
-            border-color: #FFD700 !important;
+        .text-shadow-custom {
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
         }
-        .navbar-brand {
-            font-weight: bold;
-            font-size: 1.5rem; /* Adjusted for Bootstrap */
+        .gallery-img {
+            height: 300px; /* Fixed height for gallery images */
+            object-fit: cover;
+            width: 100%;
         }
-        .nav-link {
-            transition: color 0.3s ease-in-out;
+        .product-img-fit {
+            height: 160px; /* Adjusted height for product images to fit better */
+            object-fit: contain; /* Ensure image fits within its box */
+            width: 100%;
         }
-        .nav-link.active { /* Stijl voor actieve link in Bootstrap */
-            color: #556B2F !important;
+        /* Specific styling for the header as per PDF */
+        .pdf-header {
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .pdf-header .nav-link-custom {
+            padding-bottom: 4px; /* Space for border-bottom */
+            transition: border-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+        .pdf-header .nav-link-custom.active,
+        .pdf-header .nav-link-custom:hover {
+            border-bottom: 2px solid #333333; /* Dark border on active/hover */
+            color: #333333; /* Ensure text remains dark */
+        }
+
+        /* Specific styling for the hero banner as per PDF */
+        .hero-banner {
+            height: 500px; /* Fixed height for the banner */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .hero-banner-overlay {
+            background-color: rgba(0, 0, 0, 0.1); /* Slight overlay for readability */
+        }
+        .hero-book-now-btn {
+            background-color: #FFFFFF; /* White button */
+            color: #333333; /* Dark text */
             font-weight: 600;
+            padding: 12px 32px;
+            border-radius: 9999px; /* Full rounded */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease-in-out;
         }
-        .hero-section {
-            min-height: 80vh;
+        .hero-book-now-btn:hover {
+            background-color: #f0f0f0; /* Light gray on hover */
+        }
+
+        /* Styling for the quote banner */
+        .quote-banner {
+            height: 100vh; /* Full viewport height */
             background-size: cover;
             background-position: center;
             display: flex;
             align-items: center;
             justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 2rem;
         }
-        .hero-overlay-content {
-            background-color: rgba(0, 0, 0, 0.6);
-            padding: 2rem; /* p-3 or p-md-5 */
-            border-radius: 0.5rem; /* rounded-3 */
+        .quote-banner h2 {
+            font-size: 2.5rem; /* Large font size */
+            line-height: 1.4;
+            font-weight: 300; /* Light font weight */
         }
-        .content-section {
-            padding-top: 5rem;
-            padding-bottom: 5rem;
-            border-bottom: 1px solid #e9ecef; /* Bootstrap's default border color */
+        .quote-banner p {
+            font-size: 1.125rem;
+            font-weight: 300;
+            margin-top: 1rem;
         }
-        .content-section:last-child {
-            border-bottom: none;
-        }
-        .gallery-img {
-            aspect-ratio: 1 / 1;
-            width: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease-in-out;
-        }
-        .gallery-img:hover {
-            transform: scale(1.05);
-        }
-        .product-card img {
-            height: 250px; /* Fixed height for product images */
-            object-fit: cover; /* Ensure image covers the area well */
-        }
-        .product-card:hover {
-            transform: scale(1.05);
-            transition: transform 0.3s ease-in-out;
-        }
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 */
-            height: 0;
-            overflow: hidden;
-            max-width: 100%;
-            background: #adb5bd; /* Bootstrap's secondary color for placeholder */
+
+        /* Testimonials section specific styling */
+        .testimonial-card {
+            background-color: #FFFFFF;
             border-radius: 0.5rem;
-            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); /* Bootstrap's shadow-sm */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
         }
-        .video-container iframe { /* No placeholder content needed if iframe is present */
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        .cta-button {
-            background-color: #556B2F;
-            border-color: #556B2F;
-            color: white;
-            font-weight: 600;
-        }
-        .cta-button:hover {
-            background-color: #4A5D28; /* Darker olive */
-            border-color: #4A5D28;
-            color: white;
-        }
-        .img-cover {
-            width: 100%;
-            height: 100%;
+        .testimonial-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 9999px; /* Fully rounded for profile pictures */
             object-fit: cover;
-        }
-        .footer {
-            background-color: #f8f9fa; /* Lichtgrijs voor footer, Bootstrap's bg-light */
-            color: #6c757d; /* Bootstrap's text-muted */
-            padding-top: 3rem;
-            padding-bottom: 3rem;
-        }
-        .footer a {
-            color: #556B2F; /* Olijfgroen voor links in footer */
-            text-decoration: none;
-        }
-        .footer a:hover {
-            color: #4A5D28; /* Donkerder olijfgroen bij hover */
-            text-decoration: underline;
-        }
-        .social-icons a {
-            font-size: 1.5rem; /* Grootte van social media iconen */
-            margin-left: 0.75rem;
-            margin-right: 0.75rem;
-            color: #556B2F;
-        }
-        .social-icons a:hover {
-            color: #FFD700; /* Goud bij hover voor social icons */
-        }
-        /* Nieuwe CSS-regel voor hover-effect op contactlinks */
-        .hover-text-olive-dark:hover {
-            color: #4A5D28 !important; /* Donkerder olijfgroen bij hover */
+            margin: 0 auto 1rem auto;
         }
     </style>
 </head>
-<body class="d-flex flex-column min-vh-100">
+<body class="font-sans text-gray-800">
 
-    <header class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="#home">
-                <img src="https://i.ibb.co/fYGRrPrX/IDO-Hair-logo-goud.png" alt="Ido Hair Logo" style="height: 40px;">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <nav class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav align-items-center">
-                    <li class="nav-item"><a class="nav-link" href="#home" data-section="home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#over-ons" data-section="over-ons">Over Ons</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#diensten" data-section="diensten">Diensten</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#galerij" data-section="galerij">Galerij</a></li>
-                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
-                        <a href="#contact" class="btn cta-button px-3 py-2">Maak een afspraak</a>
-                    </li>
-                </ul>
-            </nav>
+    <!-- Header -->
+    <header class="pdf-header bg-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col items-center">
+                <img src="https://i.ibb.co/fYGRrPrX/IDO-Hair-logo-goud.png" alt="Ido Hair Logo" class="mx-auto mb-4 h-20 w-auto">
+                <nav>
+                    <ul class="flex justify-center space-x-6 text-gray-800 text-base font-medium">
+                        <li><a href="#home" class="nav-link-custom active">Home</a></li>
+                        <li><a href="#behandelingen-sectie" class="nav-link-custom">Services</a></li>
+                        <li><a href="#over-ons" class="nav-link-custom">Team</a></li>
+                        <li><a href="#contact" class="nav-link-custom">Salon</a></li>
+                        <li><a href="#producten-sectie" class="nav-link-custom">Products</a></li>
+                        <li><a href="#contact" class="nav-link-custom">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </header>
+    
+    <!-- Home / Banner met Book Now knop -->
+    <section id="home" class="hero-banner flex items-end justify-center pb-8" style="background-image: url('https://i.ibb.co/mrbNTk4K/IMG-1353.jpg');">
+        <div class="hero-banner-overlay absolute inset-0 flex items-end justify-center pb-8">
+            <a href="#contact" class="hero-book-now-btn">BOOK NOW</a>
+        </div>
+    </section>
 
-    <main class="flex-grow-1">
-        <section id="home" class="page-content hero-section" style="background-image: url('https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');">
-            <div class="container text-center hero-overlay-content">
-                <h1 class="display-4 fw-bold text-white mb-4">
-                    Welkom bij Ido <span class="text-gold">Hair</span>
-                </h1>
-                <p class="lead text-light mb-5 mx-auto" style="max-width: 600px;">
-                    Authentiek, persoonlijk en met oog voor detail. Ontdek de visie en passie achter elke knipbeurt.
+    <!-- Meet Ido Zeldenrust sectie (Team) -->
+    <section id="over-ons" class="w-full bg-white py-12 px-6 md:px-12">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 items-center gap-10">
+            <!-- Tekst links -->
+            <div>
+                <h2 class="text-3xl md:text-4xl font-semibold text-gray-800 mb-6">Meet<br>Ido Zeldenrust</h2>
+                <p class="text-gray-600 text-lg leading-relaxed mb-4">
+                    Al 24 jaar staat Ido bekend om zijn kwaliteit, passie en enthousiasme voor het vak. Je kan hem kennen door zijn deelname aan Next Hair Guru. Zijn klanten noemen hem 'the hair magician' omdat hij vakmanschap beheerst en inspirerende creaties aflevert. Hij verzorgt artistieke, extravagante, klassieke en trendy creaties. Zijn doel is het creëren van de mooiste en meest diverse looks op een innovatieve manier. Hairextensions zijn daarbij zijn specialiteit. Zelfs de kat die rondloopt ontkomt niet aan Ido's creativiteit getuige de roze staart.
                 </p>
-                <div style="position:relative; width:100%; height:0px; padding-bottom:56.250%; max-width: 720px; margin: 0 auto 3rem auto;"> <iframe allow="fullscreen" allowfullscreen height="100%" src="https://streamable.com/e/fgab12?" width="100%" style="border:none; width:100%; height:100%; position:absolute; left:0px; top:0px; overflow:hidden;"></iframe>
-                </div>
-                <a href="#over-ons" class="btn cta-button btn-lg">
-                    Meer over Ido
-                </a>
+                <h3 class="text-xl font-semibold text-gray-800 mb-3">Openingstijden</h3>
+                <ul class="text-gray-600 text-base mb-0">
+                    <li><strong>Dinsdag t/m Vrijdag:</strong> 09:30 - 19:00</li>
+                    <li><strong>Zaterdag:</strong> 09:00 - 18:00</li>
+                    <li><strong>Maandag & Zondag:</strong> Gesloten</li>
+                </ul>
             </div>
-        </section>
 
-        <section id="over-ons" class="page-content content-section">
-            <div class="container">
-                <h2 class="display-5 fw-bold text-center text-dark mb-5">Over <span class="text-olive-dark">Ido</span></h2>
-                <div class="row align-items-center g-5">
-                    <div class="col-md-5">
-                        <img src="https://i.ibb.co/d0VB9NP1/Ido-Knip.jpg" alt="Ido aan het werk in de salon" class="img-fluid rounded shadow-lg mb-4">
-                        </div>
-                    <div class="col-md-7">
-                        <h3 class="h4 fw-semibold text-dark mb-3">Mijn Verhaal als Kapper</h3>
-                        <p class="text-muted mb-3">Al van jongs af aan was ik gefascineerd door de kunst van het knippen en stylen. Wat begon als een hobby, groeide al snel uit tot een diepe passie en uiteindelijk mijn beroep. Na jaren ervaring opgedaan te hebben in diverse salons, besloot ik mijn eigen weg te gaan met Ido Hair.</p>
-                        <p class="text-muted mb-4">Hier kan ik mijn creativiteit de vrije loop laten en een persoonlijke benadering bieden die ik zo belangrijk vind. Elke klant is uniek, en dat geldt ook voor elk kapsel dat ik creëer.</p>
-                        <h4 class="h5 fw-semibold text-dark mb-3">Motivatie & Ervaring</h4>
-                        <p class="text-muted mb-4">Mijn drijfveer is de glimlach op het gezicht van een tevreden klant. Ik investeer continu in mijn vaardigheden door trainingen en workshops te volgen, zodat ik altijd op de hoogte ben van de nieuwste technieken en trends in de haarmode. Met <strong>24 jaar ervaring</strong> in het vak, word ik door mijn klanten vaak 'the hair magician' genoemd. Je kunt hem ook kennen door zijn deelname aan Next Hair Guru.</p>
-                        
-                        <h3 class="h4 fw-semibold text-dark mb-3">Mijn Visie op Haar</h3>
-                        <p class="text-muted">Mijn passie is om een kapsel te creëren dat niet alleen bij je past, maar ook je persoonlijkheid versterkt. Ik luister aandachtig naar je wensen en geef eerlijk advies op maat. Kwaliteit, vakmanschap en persoonlijke aandacht staan centraal. Hij verzorgt artistieke, extravagante, klassieke en trendy creaties. Zijn doel is het creëren van de mooiste en meest diverse looks op een innovatieve manier. Hairextensions zijn daarbij zijn specialiteit. Zelfs de kat die rondloopt ontkomt niet aan Ido's creativiteit getuige de roze staart.</p>
+            <!-- Foto rechts -->
+            <div>
+                <img src="https://i.ibb.co/d0VB9NP1/Ido-Knip.jpg" alt="Ido Zeldenrust knipt haar" class="w-full rounded shadow-lg">
+            </div>
+        </div>
+    </section>
 
-                        <h3 class="h4 fw-semibold text-dark mb-3">Openingstijden</h3>
-                        <ul class="list-unstyled text-muted mb-0">
-                            <li><strong>Dinsdag t/m Vrijdag:</strong> 09:30 - 19:00</li>
-                            <li><strong>Zaterdag:</strong> 09:00 - 18:00</li>
-                            <li><strong>Maandag & Zondag:</strong> Gesloten</li>
-                        </ul>
-                    </div>
+    <!-- Haar behandelingen sectie (Services) -->
+    <section id="behandelingen-sectie" class="bg-white py-16 px-6 md:px-12">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-semibold text-gray-800 mb-10">Haar<br>behandelingen</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
+                <div class="relative">
+                    <img src="https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg" alt="Hair Treatments" class="w-full h-72 object-cover rounded">
+                    <span class="absolute inset-0 flex items-center justify-center text-white text-xl font-bold text-shadow-custom">HAIR<br>TREATMENTS</span>
+                </div>
+                <div class="relative">
+                    <img src="https://images.pexels.com/photos/3738343/pexels-photo-3738343.jpeg" alt="Coloring" class="w-full h-72 object-cover rounded">
+                    <span class="absolute inset-0 flex items-center justify-center text-white text-xl font-bold text-shadow-custom">COLORING</span>
+                </div>
+                <div class="relative">
+                    <img src="https://images.pexels.com/photos/3993460/pexels-photo-3993460.jpeg" alt="Extensions" class="w-full h-72 object-cover rounded">
+                    <span class="absolute inset-0 flex items-center justify-center text-white text-xl font-bold text-shadow-custom">EXTENSIONS</span>
                 </div>
             </div>
-        </section>
 
-        <section id="diensten" class="page-content content-section bg-light">
-            <div class="container">
-                <h2 class="display-5 fw-bold text-center text-dark mb-5">Onze <span class="text-olive-dark">Diensten</span></h2>
-                <p class="text-center text-muted lead mb-5 mx-auto" style="max-width: 700px;">
-                    Ontdek de diverse haarbehandelingen die ik aanbied, afgestemd op jouw wensen en haartype. Kwaliteit en vakmanschap staan centraal bij elke service. Neem contact op voor de actuele prijzen en een advies op maat.
-                </p>
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
-                    <div class="col">
-                        <div class="card h-100 text-center shadow-sm product-card">
-                            <img src="https://images.pexels.com/photos/1805600/pexels-photo-1805600.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Man knipbeurt" class="card-img-top p-3">
-                            <div class="card-body d-flex flex-column">
-                                <h3 class="card-title h5 fw-semibold text-dark mb-2">Mannen Wassen & Knippen</h3>
-                                <p class="card-text text-muted small flex-grow-1">Een complete knipbeurt inclusief wassen en stylen. (ca. 30 min)</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100 text-center shadow-sm product-card">
-                            <img src="https://images.pexels.com/photos/3992868/pexels-photo-3992868.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Vrouw met pony" class="card-img-top p-3">
-                            <div class="card-body d-flex flex-column">
-                                <h3 class="card-title h5 fw-semibold text-dark mb-2">Vrouwen Pony Knippen</h3>
-                                <p class="card-text text-muted small flex-grow-1">Snel en vakkundig je pony bijgewerkt. (ca. 15 min)</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100 text-center shadow-sm product-card">
-                            <img src="https://i.ibb.co/DHMtDRYt/Man-Strakke-Look.jpg" alt="Man met strakke look" class="card-img-top p-3">
-                            <div class="card-body d-flex flex-column">
-                                <h3 class="card-title h5 fw-semibold text-dark mb-2">Mannen Barberbehandeling</h3>
-                                <p class="card-text text-muted small flex-grow-1">Uitgebreide barberbehandeling voor een strakke look. (vanaf 25 min)</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100 text-center shadow-sm product-card">
-                            <img src="https://images.pexels.com/photos/3992873/pexels-photo-3992873.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Vrouwen knipbeurt" class="card-img-top p-3">
-                            <div class="card-body d-flex flex-column">
-                                <h3 class="card-title h5 fw-semibold text-dark mb-2">Vrouwen Knippen & Stylen</h3>
-                                <p class="card-text text-muted small flex-grow-1">Een complete knipbeurt met persoonlijk advies en styling. (ca. 45 min)</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100 text-center shadow-sm product-card">
-                            <img src="https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Haarkleuring" class="card-img-top p-3">
-                            <div class="card-body d-flex flex-column">
-                                <h3 class="card-title h5 fw-semibold text-dark mb-2">Haar Kleuren (Mannen)</h3>
-                                <p class="card-text text-muted small flex-grow-1">Professionele kleuring voor een frisse nieuwe look. (ca. 45 min)</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100 text-center shadow-sm product-card">
-                            <img src="https://images.pexels.com/photos/3992877/pexels-photo-3992877.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Kinder knipbeurt" class="card-img-top p-3">
-                            <div class="card-body d-flex flex-column">
-                                <h3 class="card-title h5 fw-semibold text-dark mb-2">Vrouwen Wassen & Föhnen</h3>
-                                <p class="card-text text-muted small flex-grow-1">Wassen en föhnen voor een perfecte finish. (35-50 min)</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100 text-center shadow-sm product-card">
-                            <img src="https://images.pexels.com/photos/4465124/pexels-photo-4465124.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Haarverzorging" class="card-img-top p-3">
-                            <div class="card-body d-flex flex-column">
-                                <h3 class="card-title h5 fw-semibold text-dark mb-2">Soja-behandeling</h3>
-                                <p class="card-text text-muted small flex-grow-1">Een voedende soja-behandeling voor gezond haar. (ca. 45 min)</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100 text-center shadow-sm product-card">
-                            <img src="https://images.pexels.com/photos/7692981/pexels-photo-7692981.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Haarverzorging" class="card-img-top p-3">
-                            <div class="card-body d-flex flex-column">
-                                <h3 class="card-title h5 fw-semibold text-dark mb-2">Keratinebehandeling</h3>
-                                <p class="card-text text-muted small flex-grow-1">Intensieve keratinebehandeling voor glad en glanzend haar. (ca. 2 uur 30 min)</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100 text-center shadow-sm product-card">
-                            <img src="https://images.pexels.com/photos/2529375/pexels-photo-2529375.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Haarstyling" class="card-img-top p-3">
-                            <div class="card-body d-flex flex-column">
-                                <h3 class="card-title h5 fw-semibold text-dark mb-2">Vrouwen Föhnen</h3>
-                                <p class="card-text text-muted small flex-grow-1">Professioneel föhnen voor volume en stijl. (ca. 1 uur 45 min)</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100 text-center shadow-sm product-card">
-                            <img src="https://images.pexels.com/photos/1319460/pexels-photo-1319460.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Haarstyling" class="card-img-top p-3">
-                            <div class="card-body d-flex flex-column">
-                                <h3 class="card-title h5 fw-semibold text-dark mb-2">Vrouwen Föhnen & Tangen</h3>
-                                <p class="card-text text-muted small flex-grow-1">Föhnen en stylen met de tang voor een perfecte look. (ca. 1 uur)</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100 text-center shadow-sm product-card">
-                            <img src="https://images.pexels.com/photos/2068349/pexels-photo-2068349.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Haar opsteken" class="card-img-top p-3">
-                            <div class="card-body d-flex flex-column">
-                                <h3 class="card-title h5 fw-semibold text-dark mb-2">Vrouwen Haar Opsteken</h3>
-                                <p class="card-text text-muted small flex-grow-1">Voor speciale gelegenheden, een elegant opgestoken kapsel. (ca. 1 uur)</p>
-                            </div>
-                        </div>
-                    </div>
+            <p class="text-gray-600 text-lg">Need more information about your hairstyle?<br>We offer the above services.</p>
+        </div>
+    </section>
+
+    <!-- Galerij by Ido Zeldenrust -->
+    <section id="galerij" class="bg-white py-16 px-6 md:px-12">
+        <div class="max-w-6xl mx-auto">
+            <!-- Titelrij: Galerij en by Ido Zeldenrust -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 items-end mb-6">
+                <h2 class="text-5xl font-extrabold text-gray-800 col-span-2 sm:col-span-2">GALERIJ</h2>
+                <div class="col-span-2 sm:col-start-3 sm:col-span-2 text-right">
+                    <p class="text-2xl sm:text-3xl font-extrabold text-gray-800 leading-tight">by<br>Ido<br>Zeldenrust</p>
                 </div>
-                <p class="text-center text-muted mt-5">
-                    Advies nodig? Ik help je graag de juiste behandeling te kiezen. Neem contact op voor meer informatie.
+            </div>
+
+            <!-- Foto grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <img src="https://i.ibb.co/35RWQt5D/1-Before.jpg" alt="Gallery 1 Before" class="w-full h-80 object-cover rounded">
+                <img src="https://i.ibb.co/6JmVxP29/1-After.jpg" alt="Gallery 1 After" class="w-full h-80 object-cover rounded">
+                <img src="https://i.ibb.co/YBFqtc0Z/2-Before.jpg" alt="Gallery 2 Before" class="w-full h-80 object-cover rounded">
+                <img src="https://i.ibb.co/GQP28NvM/2-After.jpg" alt="Gallery 2 After" class="w-full h-80 object-cover rounded">
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Products sectie -->
+    <section id="producten-sectie" class="bg-white py-16 px-6 md:px-12">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+            <!-- Tekst links -->
+            <div>
+                <h2 class="text-5xl font-extrabold text-gray-800 mb-4 leading-none">Our<br>Products</h2>
+                <p class="tracking-widest uppercase text-sm text-gray-500 mb-4">For Everybody</p>
+                <p class="text-gray-700 text-base leading-relaxed">
+                    Mathice Beauty uses ethically<br>
+                    sourced, fair trade, natural<br>
+                    materials that are expertly crafted<br>
+                    to match users needs.
                 </p>
             </div>
-        </section>
 
-        <section id="galerij" class="page-content content-section">
-            <div class="container">
-                <h2 class="display-5 fw-bold text-center text-dark mb-5">Voor & Na <span class="text-olive-dark">Haar Knippen Galerij</span></h2>
-                <div class="row row-cols-1 row-cols-md-2 g-4">
-                    <div class="col"><img src="https://i.ibb.co/35RWQt5D/1-Before.jpg" alt="Before Foto 1" class="gallery-img rounded shadow-sm"></div>
-                    <div class="col"><img src="https://i.ibb.co/6JmVxP29/1-After.jpg" alt="After Foto 1" class="gallery-img rounded shadow-sm"></div>
-                    
-                    <div class="col"><img src="https://i.ibb.co/YBFqtc0Z/2-Before.jpg" alt="Before Foto 2" class="gallery-img rounded shadow-sm"></div>
-                    <div class="col"><img src="https://i.ibb.co/GQP28NvM/2-After.jpg" alt="After Foto 2" class="gallery-img rounded shadow-sm"></div>
-
-                    <div class="col"><img src="https://i.ibb.co/DD3FvwmH/3-Before.jpg" alt="Before Foto 3" class="gallery-img rounded shadow-sm"></div>
-                    <div class="col"><img src="https://i.ibb.co/5x6QtkcS/3-After.jpg" alt="After Foto 3" class="gallery-img rounded shadow-sm"></div>
+            <!-- Producten rechts -->
+            <div class="grid grid-cols-3 gap-6 items-start text-center">
+                <div>
+                    <img src="https://images.pexels.com/photos/4465124/pexels-photo-4465124.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Conditioner Care" class="product-img-fit mx-auto mb-2 rounded">
+                    <p class="font-medium text-gray-800">Conditioner Care</p>
+                </div>
+                <div>
+                    <img src="https://images.pexels.com/photos/7692981/pexels-photo-7692981.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Hair mist" class="product-img-fit mx-auto mb-2 rounded">
+                    <p class="font-medium text-gray-800">Hair mist</p>
+                </div>
+                <div>
+                    <img src="https://images.pexels.com/photos/2529375/pexels-photo-2529375.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Shampoo Care" class="product-img-fit mx-auto mb-2 rounded">
+                    <p class="font-medium text-gray-800">Shampoo Care</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="contact" class="page-content content-section bg-olive-dark text-white">
-            <div class="container text-center">
-                <h2 class="display-5 fw-bold mb-4">Maak een <span class="text-gold">Afspraak</span></h2>
-                <p class="lead mb-5 mx-auto" style="max-width: 600px;">
-                    Klaar voor een frisse look of advies op maat? Neem contact op om je afspraak in te plannen.
-                    Ik kijk ernaar uit je te verwelkomen in de salon!
+    <!-- Inspiratie Quote Banner -->
+    <section class="quote-banner" style="background-image: url('https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg');">
+        <div>
+            <h2 class="font-light leading-relaxed mb-6">
+                Wij geloven dat goed haar<br>
+                begint met luisteren, met<br>
+                aandacht voor jouw wensen<br>
+                en een stijl die bij je past
+            </h2>
+            <p class="font-light">Ido Zeldenrust</p>
+        </div>
+    </section>
+
+    <!-- Testimonials sectie -->
+    <section id="testimonials" class="bg-white py-16 px-6 md:px-12">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-4xl font-extrabold text-gray-800 mb-12">Testimonials from clients</h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-10 text-center">
+                <!-- Jamie -->
+                <div class="testimonial-card">
+                    <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Jamie Folsom Profile" class="testimonial-img">
+                    <h3 class="text-xl font-bold text-gray-800">Jamie Folsom</h3>
+                    <p class="text-gray-600 mt-2 text-sm leading-relaxed">
+                        "Ik kom hier al 14 jaar met veel plezier.<br>
+                        Elke keer weer word ik geholpen met<br>
+                        dezelfde zorg en aandacht als de<br>
+                        eerste keer. Ze luisteren echt naar wat<br>
+                        je wilt, en het resultaat is altijd precies<br>
+                        goed. Het voelt vertrouwd."
+                    </p>
+                    <div class="text-orange-500 mt-3 text-lg">★★★★★</div>
+                </div>
+
+                <!-- Ryan -->
+                <div class="testimonial-card">
+                    <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Ryan Hughes Profile" class="testimonial-img">
+                    <h3 class="text-xl font-bold text-gray-800">Ryan Hughes</h3>
+                    <p class="text-gray-600 mt-2 text-sm leading-relaxed">
+                        "Sinds een paar maanden kom ik hier,<br>
+                        en ik was meteen op mijn gemak. Ze<br>
+                        nemen de tijd, denken met je mee en<br>
+                        geven eerlijk advies. Mijn haar voelt en<br>
+                        zit beter dan ooit."
+                    </p>
+                    <div class="text-orange-500 mt-3 text-lg">★★★★★</div>
+                </div>
+
+                <!-- Anthony -->
+                <div class="testimonial-card">
+                    <img src="https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Anthony Garrett Profile" class="testimonial-img">
+                    <h3 class="text-xl font-bold text-gray-800">Anthony Garrett</h3>
+                    <p class="text-gray-600 mt-2 text-sm leading-relaxed">
+                        "Ik ben hier drie jaar geleden<br>
+                        terechtgekomen op aanraden van een<br>
+                        vriendin, en ik wil nergens anders<br>
+                        meer naartoe. Ze zijn professioneel,<br>
+                        vriendelijk en het resultaat is altijd<br>
+                        verzorgd en stijlvol."
+                    </p>
+                    <div class="text-orange-500 mt-3 text-lg">★★★★★</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Get in Touch Section (Contact) -->
+    <section id="contact" class="bg-olive-dark-custom text-white py-16 px-6 md:px-12">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start">
+            <!-- Left Column -->
+            <div>
+                <h2 class="text-4xl font-extrabold mb-6">GET IN<br>TOUCH</h2>
+                <p class="mb-2">
+                    123 Anywhere St.<br>
+                    Any City<br>
+                    ST 123456<br>
+                    Country
                 </p>
-                <div class="bg-white text-dark p-4 p-md-5 rounded shadow-lg mx-auto" style="max-width: 550px;">
-                    <h3 class="h4 fw-semibold mb-4 text-olive-dark">Contactgegevens & Formulier</h3>
-                    <div class="text-start mb-4">
-                        <p class="mb-2"><strong>Telefoon:</strong> <a href="tel:+31612345678" class="text-dark text-decoration-none hover-text-olive-dark">+31 6 12345678</a></p>
-                        <p class="mb-2"><strong>Email:</strong> <a href="mailto:idoscuttingcrew@yahoo.com" class="text-dark text-decoration-none hover-text-olive-dark">idoscuttingcrew@yahoo.com</a></p>
-                        <p><strong>Adres:</strong> Tweede Jan van der Heijdenstraat 41, 1074XN Amsterdam</p>
-                    </div>
-                    <div class="video-container mb-4">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2437.288279822349!2d4.890947715951806!3d52.3524589797825!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c609c1d0f507b9%3A0x6e7b1c2b3e8e1a1!2sTweede%20Jan%20van%20der%20Heijdenstraat%2041%2C%201074%20XN%20Amsterdam!5e0!3m2!1sen!2snl!4v1678987654321!5m2!1sen!2snl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
-                    <h3 class="h4 fw-semibold text-dark mb-3 text-start">Onze Salonregels</h3>
-                    <p class="text-muted mb-3 text-start">Bij Ido Hair streven we naar een ontspannen en professionele sfeer. Om dit voor iedereen prettig te houden, hanteren we enkele huisregels.</p>
-                    <ul class="list-unstyled text-muted mb-4 ps-3 text-start">
-                        <li class="mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#556B2F" class="bi bi-check-circle-fill me-2" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>Kom op tijd voor je afspraak.</li>
-                        <li class="mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#556B2F" class="bi bi-check-circle-fill me-2" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>Annuleer minimaal 24 uur van tevoren.</li>
-                        <li class="mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#556B2F" class="bi bi-check-circle-fill me-2" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>Respecteer de rust in de salon.</li>
-                        <li class="mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#556B2F" class="bi bi-check-circle-fill me-2" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>Betaling per pin of contant.</li>
-                    </ul>
-                    <form action="submit_form.php" method="POST">
-                        <div class="mb-3">
-                            <label for="name" class="form-label text-start w-100">Naam</label>
-                            <input type="text" class="form-control" name="name" id="name" placeholder="Uw naam" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label text-start w-100">Email</label>
-                            <input type="email" class="form-control" name="email" id="email" placeholder="Uw emailadres" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="message" class="form-label text-start w-100">Bericht</label>
-                            <textarea class="form-control" name="message" id="message" rows="4" placeholder="Uw bericht of gewenste behandeling" required></textarea>
-                        </div>
-                        <button type="submit" class="btn cta-button w-100 btn-lg">
-                            Verstuur Afspraakverzoek
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
+                <p class="mt-4 mb-2">
+                    Telephone: 123-456789<br>
+                    Mobile: +91-123-456-7890
+                </p>
+                <p class="font-semibold">idoscuttingcrew@yahoo.com</p>
 
-    <footer class="footer border-top mt-auto">
-        <div class="container">
-            <div class="row align-items-center py-4">
-                <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
-                    <a class="navbar-brand" href="#home">
-                        <img src="https://i.ibb.co/fYGRrPrX/IDO-Hair-logo-goud.png" alt="Ido Hair Logo" style="height: 40px;">
-                    </a>
-                </div>
-                <div class="col-md-4 text-center mb-3 mb-md-0">
-                    <p class="mb-1">© <span id="currentYear"></span> Ido Hair. Alle rechten voorbehouden.</p>
-                    <p class="mb-0 small">Ontwerp & Realisatie met ❤️</p>
-                </div>
-                <div class="col-md-4 text-center text-md-end social-icons">
+                <!-- Social Icons -->
+                <div class="flex space-x-6 mt-6 text-white text-2xl">
                     <a href="https://www.instagram.com/idoscuttingcrew/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
                     <a href="mailto:idoscuttingcrew@yahoo.com" aria-label="Email"><i class="bi bi-envelope-fill"></i></a>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12 text-center border-top pt-3 mt-3">
-                    <ul class="list-inline mb-0">
-                        <li class="list-inline-item"><a href="#home">Home</a></li>
-                        <li class="list-inline-item"><a href="#over-ons">Over Ons</a></li>
-                        <li class="list-inline-item"><a href="#diensten">Diensten</a></li>
-                        <li class="list-inline-item"><a href="#contact">Contact</a></li>
-                        <li class="list-inline-item"><a href="#">Privacybeleid</a></li>
-                        <li class="list-inline-item"><a href="#">Algemene Voorwaarden</a></li>
-                    </ul>
-                </div>
+
+            <!-- Right Column -->
+            <div>
+                <h3 class="text-2xl font-semibold mb-2">Behandelingen</h3>
+                <p class="text-sm text-gray-200 mb-6 max-w-md">
+                    Highlight specific services or products that are<br>
+                    unique to your business here. It can be your<br>
+                    flagship product, or a service that you've<br>
+                    pioneered. Give it room to shine here.
+                </p>
+
+                <!-- Appointment Button -->
+                <a href="#contact" class="inline-block bg-white text-black font-semibold px-6 py-3 rounded-lg mb-8">
+                    BOOK AN APPOINTMENT
+                </a>
+
+                <!-- Opening Times -->
+                <h4 class="text-xl font-semibold mb-3">Openingstijden</h4>
+                <ul class="text-sm text-gray-200 space-y-1">
+                    <li>Monday: 8am – 7pm</li>
+                    <li>Tuesday: 8am – 5pm</li>
+                    <li>Wednesday: 8am – 5pm</li>
+                    <li>Thursday: 8am – 7pm</li>
+                    <li>Friday: 8am – 5pm</li>
+                </ul>
             </div>
         </div>
+    </section>
+
+    <!-- Google Maps Full Width -->
+    <section class="w-full h-[450px]">
+        <iframe 
+            class="w-full h-full"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2437.288279822349!2d4.890947715951806!3d52.3524589797825!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c609c1d0f507b9%3A0x6e7b1c2b3e8e1a1!2sTweede%20Jan%20van%20der%20Heijdenstraat%2041%2C%201074%20XN%20Amsterdam!5e0!3m2!1sen!2snl!4v1678987654321!5m2!1sen!2snl"
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </section>
+
+    <footer class="text-center p-4 bg-gray-200 text-sm">
+        © <span id="currentYear"></span> Ido Hair. Alle rechten voorbehouden.
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Actieve navigatielink op basis van scrollpositie
-        const sections = document.querySelectorAll('.page-content');
-        const navLinks = document.querySelectorAll('.navbar-nav .nav-link[data-section]');
-        const header = document.querySelector('header.navbar');
-        let headerHeight = header ? header.offsetHeight : 70; // Fallback header height
+        // Set current year for copyright
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        // Update headerHeight if it changes (e.g. on resize, though less common for sticky navbars)
-        window.addEventListener('resize', () => {
-            headerHeight = header ? header.offsetHeight : 70;
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.pdf-header .nav-links a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Calculate offset considering the fixed header height
+                    const headerHeight = document.querySelector('.pdf-header').offsetHeight;
+                    const offsetTop = targetElement.offsetTop - headerHeight;
+
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: "smooth"
+                    });
+                }
+            });
         });
-        
-        const activateNavLink = () => {
-            let currentSectionId = '';
+
+        // Highlight active navigation link on scroll
+        const sections = document.querySelectorAll('main section[id]');
+        const navLinks = document.querySelectorAll('.pdf-header .nav-links a');
+
+        const highlightNavLink = () => {
+            let currentActive = '';
             sections.forEach(section => {
-                const sectionTop = section.offsetTop - headerHeight - 50; // Kleine offset
-                // Controleer of de sectie zichtbaar is in de viewport
-                if (window.scrollY >= sectionTop) { // Vereenvoudigde check
-                    currentSectionId = section.getAttribute('id');
+                const sectionTop = section.offsetTop - document.querySelector('.pdf-header').offsetHeight - 50; // Adjusted offset
+                const sectionBottom = sectionTop + section.offsetHeight;
+
+                if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
+                    currentActive = section.getAttribute('id');
                 }
             });
 
             navLinks.forEach(link => {
                 link.classList.remove('active');
-                const linkSectionId = link.getAttribute('href').substring(1); 
-                if (linkSectionId === currentSectionId) {
+                if (link.getAttribute('href').substring(1) === currentActive) {
                     link.classList.add('active');
                 }
             });
         };
 
-        window.addEventListener('scroll', activateNavLink);
-        window.addEventListener('load', () => {
-            headerHeight = header ? header.offsetHeight : 70; // Recalculate on load after all elements are rendered
-            activateNavLink();
-        });
-
-        // Copyright jaar
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-        // Soepel scrollen voor ankerlinks (Bootstrap 5's default scrollspy/nav kan dit ook, maar custom is soms fijner)
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const hrefAttribute = this.getAttribute('href');
-                if (hrefAttribute && hrefAttribute.length > 1 && hrefAttribute.startsWith('#')) {
-                    const targetElement = document.querySelector(hrefAttribute);
-                    if (targetElement) {
-                        e.preventDefault();
-                        const elementPosition = targetElement.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.pageYOffset - headerHeight; 
-
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: "smooth"
-                        });
-                        
-                        if(history.pushState) {
-                            history.pushState(null, null, hrefAttribute);
-                        } else {
-                            location.hash = hrefAttribute;
-                        }
-
-                        const navbarCollapse = document.getElementById('navbarNav');
-                        if (navbarCollapse.classList.contains('show')) {
-                            const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
-                                toggle: false  
-                            });
-                            bsCollapse.hide();
-                        }
-                    }
-                }
-            });
-        });
-
-        // De JavaScript voor de scroll-to-top knop is verwijderd.
+        window.addEventListener('scroll', highlightNavLink);
+        window.addEventListener('load', highlightNavLink); // Call on load to set initial active link
     </script>
 
 </body>
