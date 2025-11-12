@@ -35,6 +35,26 @@ faqItems.forEach(item => {
   });
 });
 
+// === NAVBAR DROPDOWN TOGGLE ===
+document.querySelectorAll('.dropdown').forEach(dropdown => {
+  const button = dropdown.querySelector('button');
+  const menu = dropdown.querySelector('.dropdown-menu');
+
+  button.addEventListener('click', (e) => {
+    e.stopPropagation();
+    document.querySelectorAll('.dropdown-menu').forEach(m => {
+      if (m !== menu) m.classList.add('hidden');
+    });
+    menu.classList.toggle('hidden');
+    button.querySelector('svg').classList.toggle('rotate-180');
+  });
+});
+
+document.addEventListener('click', () => {
+  document.querySelectorAll('.dropdown-menu').forEach(menu => menu.classList.add('hidden'));
+  document.querySelectorAll('.dropdown button svg').forEach(icon => icon.classList.remove('rotate-180'));
+});
+
 
 
 // === REVIEW SLIDER (center-on-card, works every click) ===
