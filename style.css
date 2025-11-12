@@ -535,8 +535,14 @@ Reviews Section
 
 .review-card {
     flex-shrink: 0;
-    width: calc(33.333% - 40px);
+    /* Behoud deze breedte voor desktop lay-out */
+    width: 700px;
     max-width: 400px;
+    
+    /* MAAK KAART VIERKANT */
+    aspect-ratio: 1 / 1; 
+    height: auto; /* Zorg ervoor dat de hoogte zich aanpast */
+    
     margin: 0 20px;
     background-color: white;
     padding: 40px;
@@ -544,6 +550,12 @@ Reviews Section
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     text-align: left;
     color: var(--color-text-dark);
+    
+    /* Activeer Flexbox om de inhoud binnen de vierkante box te centreren/orden */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 .review-card p {
@@ -598,13 +610,21 @@ Review Perks Section
     padding: 40px 0;
 }
 
+.perk svg {
+    /* Verkleind van 40px naar een meer subtiele maat */
+    width: 28px;
+    height: 28px;
+    color: var(--color-gold-accent);
+    margin-bottom: 12px;
+}
+
 .perk h4 {
     font-family: var(--font-sans);
-    font-size: 12px;
+    font-size: 11px; /* Iets kleiner lettertype */
     letter-spacing: 1px;
     text-transform: uppercase;
     font-weight: 700;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
     color: var(--color-primary-dark);
 }
 
