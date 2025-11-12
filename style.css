@@ -170,6 +170,13 @@ Header / Navbar
     border-bottom: 2px solid var(--color-gold-accent);
 }
 
+/* Ensure only the #home link starts active, and remove the bottom border
+   from the shop link hover if it's linking to an external page/site */
+.nav-links li:first-child a:hover,
+.nav-links li:first-child a.active {
+    border-bottom: none;
+}
+
 .nav-icons {
     display: flex;
     align-items: center;
@@ -258,12 +265,19 @@ Hero Section (#home)
     height: 200px; /* Base dimensions for desktop */
     aspect-ratio: 1.5; /* Lock aspect ratio (300px width / 200px height = 1.5) */
 
-    /* REMOVED: background-color and padding that created the border effect */
-    background-color: transparent; 
-    padding: 0; 
+    /* NIEUW: Witte achtergrond en gecentreerde tekst */
+    background-color: var(--color-light-bg); 
+    color: var(--color-text-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: var(--font-serif);
+    font-size: 18px;
+    padding: 20px; 
     
     z-index: 50;
-    overflow: hidden; /* Ensures video doesn't bleed outside the box */
+    overflow: hidden;
 }
 
 
