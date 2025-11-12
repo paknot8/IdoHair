@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Ido | IDO HAIR</title>
+  <title>Shop | IDO HAIR</title>
+
+  <!-- Tailwind & Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orpheus+Pro:wght@400;600&display=swap" rel="stylesheet" />
   <link href="style.css" rel="stylesheet" />
   <script defer src="script.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Orpheus+Pro:wght@400;600&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
     body {
       font-family: 'Orpheus Pro', serif;
@@ -16,14 +19,16 @@
     }
   </style>
 </head>
+
 <body>
 
-    <!-- STICKY APPOINTMENT BUTTON (smaller bottom-left) -->
-<a href="#contact" 
-   class="fixed bottom-6 left-6 z-50 bg-[#B08F3D]/80 text-white font-sans uppercase tracking-wider py-2.5 px-4 text-sm rounded-md shadow-md hover:bg-[#B08F3D] transition duration-300">
-  Make Appointment
-</a>
+  <!-- STICKY APPOINTMENT BUTTON -->
+  <a href="#contact" 
+     class="fixed bottom-6 left-6 z-50 bg-[#B08F3D]/80 text-white font-sans uppercase tracking-wider py-2.5 px-4 text-sm rounded-md shadow-md hover:bg-[#B08F3D] transition duration-300">
+    Make Appointment
+  </a>
 
+  <!-- HEADER -->
 <header class="fixed top-0 left-0 w-full bg-[#EFE9DF] z-50 shadow-sm">
   <nav class="max-w-7xl mx-auto px-6 flex items-center justify-between h-20">
 
@@ -161,39 +166,41 @@
 </header>
 
 
-<!-- Home Section -->
-<section id="home" class="flex flex-col justify-center items-center text-center min-h-screen bg-[#2A2705] text-[#B08F3D] pt-28">
-  <div>
-    <h2 class="text-3xl md:text-4xl font-semibold text-[#EFE9DF] underline mb-10">This is About</h2>
+  <!-- SHOP SECTION -->
+  <section id="shop" class="pt-32 pb-20 text-center">
+    <h1 class="text-4xl md:text-5xl font-semibold text-[#B08F3D] mb-10">Shop</h1>
+    <p class="max-w-2xl mx-auto text-lg text-[#EFE9DF] mb-12">
+      Discover premium hair care products personally selected by Ido.
+      Each formula is chosen for quality, performance, and results.
+    </p>
 
-    <img src="images/IDO-Hair_logo_goud.png" alt="IDO HAIR Logo" class="mx-auto h-[220px] md:h-[280px] w-auto mb-10">
-
-    <p class="text-xl md:text-2xl text-[#B08F3D]">Hi, I’m Ido</p>
-  </div>
-</section>
-
-
-  <!-- ABOUT SECTION -->
-  <main class="pt-32 pb-20 flex flex-col items-center text-center">
-    
-
-    <div class="flex flex-col lg:flex-row items-center justify-center gap-12 max-w-5xl mx-auto px-6">
-      <div class="lg:w-1/2">
-        <h1 class="text-4xl md:text-5xl font-semibold text-[#B08F3D] mb-10">Story about Ido</h1>
-        <p class="text-lg leading-relaxed text-[#EFE9DF]">
-          From a young age, I was fascinated by hair, always styling, braiding, and playing with it long before I knew it would become my life’s passion. What began as childhood curiosity grew into a career that has taken me around the world and shaped who I am today.
-          <br><br>
-          After years of working and learning internationally, from London and Italy to the U.S. and Israel, I found my home in Amsterdam. At 27, I opened my own studio in the heart of De Pijp, where I still welcome clients from all over the world. My approach is personal and intuitive; I see every client as a unique canvas and every haircut as a collaboration.
-          <br><br>
-          For me, hair is more than beauty, it’s identity, confidence, and self-expression. Whether it’s a bold transformation, a natural refresh, or a creative color mix, my goal is always the same: to help people feel like the best version of themselves.
-        </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 px-6 max-w-6xl mx-auto">
+      <!-- PRODUCT CARD -->
+      <div class="bg-[#EFE9DF] text-gray-800 p-5 rounded-lg shadow-lg">
+        <img src="images/product1.jpg" alt="Shampoo" class="w-full h-64 object-cover rounded-md mb-4">
+        <h3 class="text-xl font-semibold mb-2">Hydrating Shampoo</h3>
+        <p class="text-sm mb-4">A nourishing formula that leaves your hair soft and refreshed.</p>
+        <span class="text-[#B08F3D] font-semibold block mb-3">€29.00</span>
+        <button class="bg-[#B08F3D] text-white px-4 py-2 rounded-md hover:bg-[#9a7a32] transition">Add to Cart</button>
       </div>
 
-      <div class="lg:w-1/2 flex justify-center">
-        <img src="images/ido_about.jpg" alt="Ido portrait" class="w-80 h-96 object-cover rounded-md shadow-lg">
+      <div class="bg-[#EFE9DF] text-gray-800 p-5 rounded-lg shadow-lg">
+        <img src="images/product2.jpg" alt="Conditioner" class="w-full h-64 object-cover rounded-md mb-4">
+        <h3 class="text-xl font-semibold mb-2">Moisture Conditioner</h3>
+        <p class="text-sm mb-4">Smooths and strengthens for a silky, manageable finish.</p>
+        <span class="text-[#B08F3D] font-semibold block mb-3">€32.00</span>
+        <button class="bg-[#B08F3D] text-white px-4 py-2 rounded-md hover:bg-[#9a7a32] transition">Add to Cart</button>
+      </div>
+
+      <div class="bg-[#EFE9DF] text-gray-800 p-5 rounded-lg shadow-lg">
+        <img src="images/product3.jpg" alt="Styling Cream" class="w-full h-64 object-cover rounded-md mb-4">
+        <h3 class="text-xl font-semibold mb-2">Styling Cream</h3>
+        <p class="text-sm mb-4">Provides flexible hold and shine for every hairstyle.</p>
+        <span class="text-[#B08F3D] font-semibold block mb-3">€27.00</span>
+        <button class="bg-[#B08F3D] text-white px-4 py-2 rounded-md hover:bg-[#9a7a32] transition">Add to Cart</button>
       </div>
     </div>
-  </main>
+  </section>
 
 <footer id="contact" class="bg-primary-dark text-text-light py-16 pt-20 pb-5">
   <div class="max-w-7xl mx-auto px-6">
@@ -201,7 +208,7 @@
     <!-- CONTACT + MAP -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-16 pb-8 text-center md:text-left">
       <div class="flex flex-col items-center md:items-start">
-        <a href="index.html">
+        <a href="#home">
           <img src="images/IDO-Hair_logo_goud.png" alt="IDO HAIR Logo" class="h-16 w-auto mb-5">
         </a>
 
@@ -267,7 +274,5 @@
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 
-
-<script src="script.js"></script> </body>
-</html>
+</body>
 </html>
