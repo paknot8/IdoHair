@@ -3,10 +3,21 @@ const menuBtn = document.getElementById('menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
 
 if (menuBtn && mobileMenu) {
-  menuBtn.addEventListener('click', () => {
+  menuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
     mobileMenu.classList.toggle('hidden');
   });
+
+  // Close mobile menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!mobileMenu.classList.contains('hidden') &&
+        !e.target.closest('#mobile-menu') &&
+        !e.target.closest('#menu-btn')) {
+      mobileMenu.classList.add('hidden');
+    }
+  });
 }
+
 
 // === FAQ ACCORDION ===
 const faqItems = document.querySelectorAll('.faq-item');
@@ -35,31 +46,46 @@ faqItems.forEach(item => {
   });
 });
 
-// === NAVBAR DROPDOWN TOGGLE ===
-document.querySelectorAll('.dropdown').forEach(dropdown => {
-  const button = dropdown.querySelector('button');
-  const menu = dropdown.querySelector('.dropdown-menu');
 
-  button.addEventListener('click', (e) => {
-    e.stopPropagation();
-    document.querySelectorAll('.dropdown-menu').forEach(m => {
-      if (m !== menu) m.classList.add('hidden');
+// === NAVBAR DROPDOWNS (click to toggle) ===
+document.addEventListener('DOMContentLoaded', function () {
+  const dropdowns = document.querySelectorAll('.dropdown');
+
+  dropdowns.forEach(dropdown => {
+    const button = dropdown.querySelector('button');
+    const menu = dropdown.querySelector('.dropdown-menu');
+
+    button.addEventListener('click', (e) => {
+      e.stopPropagation();
+
+      // Close all other dropdowns
+      dropdowns.forEach(other => {
+        if (other !== dropdown) {
+          const otherMenu = other.querySelector('.dropdown-menu');
+          if (otherMenu) otherMenu.classList.add('hidden');
+        }
+      });
+
+      // Toggle current dropdown
+      menu.classList.toggle('hidden');
     });
-    menu.classList.toggle('hidden');
-    button.querySelector('svg').classList.toggle('rotate-180');
+  });
+
+  // Close dropdowns when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.dropdown')) {
+      dropdowns.forEach(d => {
+        const menu = d.querySelector('.dropdown-menu');
+        if (menu) menu.classList.add('hidden');
+      });
+    }
   });
 });
-
-document.addEventListener('click', () => {
-  document.querySelectorAll('.dropdown-menu').forEach(menu => menu.classList.add('hidden'));
-  document.querySelectorAll('.dropdown button svg').forEach(icon => icon.classList.remove('rotate-180'));
-});
-
 
 
 // === REVIEW SLIDER (center-on-card, works every click) ===
 const track = document.getElementById('review-slider-inner');
-const viewport = document.getElementById('review-slider'); // wrapper with overflow-hidden
+const viewport = document.getElementById('review-slider');
 const btnNext = document.getElementById('next-review');
 const btnPrev = document.getElementById('prev-review');
 
@@ -69,16 +95,10 @@ if (track && viewport && btnNext && btnPrev) {
   let index = Math.floor(total / 2); // start in the middle
 
   function centerOn(i) {
-    // wrap index
     index = (i + total) % total;
-
     const card = cards[index];
-    // card center relative to the track
     const targetCenter = card.offsetLeft + (card.offsetWidth / 2);
-    // viewport center
     const viewportCenter = viewport.clientWidth / 2;
-
-    // translate so targetCenter aligns to viewportCenter
     const translate = targetCenter - viewportCenter;
 
     track.style.transition = 'transform 500ms ease';
@@ -91,4 +111,3 @@ if (track && viewport && btnNext && btnPrev) {
   window.addEventListener('resize', () => centerOn(index));
   window.addEventListener('load', () => centerOn(index));
 }
-
