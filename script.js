@@ -38,27 +38,38 @@ faqItems.forEach(item => {
 
 
 
-// === REVIEW SLIDER ===
-const slider = document.getElementById('review-slider-inner');
-const nextBtn = document.getElementById('next-review');
-const prevBtn = document.getElementById('prev-review');
+// === REVIEW SLIDER (center-on-card, works every click) ===
+const track = document.getElementById('review-slider-inner');
+const viewport = document.getElementById('review-slider'); // wrapper with overflow-hidden
+const btnNext = document.getElementById('next-review');
+const btnPrev = document.getElementById('prev-review');
 
-if (slider && nextBtn && prevBtn) {
-  let index = 0;
-  const slides = slider.children;
-  const total = slides.length;
+if (track && viewport && btnNext && btnPrev) {
+  const cards = Array.from(track.querySelectorAll('.review-card'));
+  const total = cards.length;
+  let index = Math.floor(total / 2); // start in the middle
 
-  function updateSlider() {
-    slider.style.transform = `translateX(-${index * 100}%)`;
+  function centerOn(i) {
+    // wrap index
+    index = (i + total) % total;
+
+    const card = cards[index];
+    // card center relative to the track
+    const targetCenter = card.offsetLeft + (card.offsetWidth / 2);
+    // viewport center
+    const viewportCenter = viewport.clientWidth / 2;
+
+    // translate so targetCenter aligns to viewportCenter
+    const translate = targetCenter - viewportCenter;
+
+    track.style.transition = 'transform 500ms ease';
+    track.style.transform = `translateX(${-translate}px)`;
   }
 
-  nextBtn.addEventListener('click', () => {
-    index = (index + 1) % total;
-    updateSlider();
-  });
+  btnNext.addEventListener('click', () => centerOn(index + 1));
+  btnPrev.addEventListener('click', () => centerOn(index - 1));
 
-  prevBtn.addEventListener('click', () => {
-    index = (index - 1 + total) % total;
-    updateSlider();
-  });
+  window.addEventListener('resize', () => centerOn(index));
+  window.addEventListener('load', () => centerOn(index));
 }
+
