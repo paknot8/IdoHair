@@ -18,8 +18,26 @@
                 <a href="#home"><img src="images/IDO-Hair_logo_goud.png" alt="IDO HAIR Logo" class="header-logo-img"></a>
             </div>
             <ul class="nav-links" id="nav-links">
-                <li><a href="#">Shop</a></li>
-                <li><a href="#services">Services</a></li>
+                
+                <li><a href="#">Shop</a></li> <!-- Nu een simpele link -->
+
+                <!-- Dropdown Menu voor Services -->
+                <li class="dropdown">
+                    <a href="#services" class="dropdown-toggle" id="services-dropdown-toggle">
+                        Services 
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="dropdown-arrow">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="#services-treatments">Hair Treatments</a>
+                        <a href="#services-coloring">Coloring</a>
+                        <a href="#services-cutstyle">Cut, Style, Blowout</a>
+                        <a href="#services-corrections">Color Corrections</a>
+                        <a href="#services-extensions">Extensions</a>
+                    </div>
+                </li>
+                
                 <li><a href="#about">About Ido</a></li>
                 <li><a href="#contact">Book now</a></li>
                 <li><a href="#home" class="active">Home</a></li>
@@ -264,7 +282,7 @@
     </footer>
 
 
-    <script>
+<script>
         document.addEventListener('DOMContentLoaded', function() {
             
             // 1. Mobile Menu Toggle
@@ -275,14 +293,14 @@
                 navLinks.classList.toggle('active');
             });
             
-            // Close mobile menu when a link is clicked
+            // Sluit mobiel menu wanneer op een link wordt geklikt
             navLinks.addEventListener('click', (e) => {
                 if (e.target.tagName === 'A') {
                     navLinks.classList.remove('active');
                 }
             });
 
-            // 2. FAQ Accordion
+            // 2. FAQ Accordion Logic
             const faqItems = document.querySelectorAll('.faq-item');
             
             faqItems.forEach(item => {
@@ -290,7 +308,7 @@
                 const answer = item.querySelector('.faq-answer');
                 
                 question.addEventListener('click', () => {
-                    // Close other items
+                    // Sluit andere items
                     faqItems.forEach(otherItem => {
                         if (otherItem !== item && otherItem.classList.contains('active')) {
                             otherItem.classList.remove('active');
@@ -298,12 +316,13 @@
                         }
                     });
                     
-                    // Toggle current item
+                    // Toggle het huidige item
                     item.classList.toggle('active');
                     if (item.classList.contains('active')) {
-                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                        // Stel max height in op scrollHeight voor correcte open/sluit functionaliteit
+                        answer.style.maxHeight = answer.scrollHeight + 'px'; 
                     } else {
-                        answer.style.maxHeight = null;
+                        answer.style.maxHeight = null; // Inklappen
                     }
                 });
             });
@@ -315,9 +334,9 @@
             const prevBtn = document.getElementById('prev-review');
             
             let currentIndex = 0;
-            let reviewWidth = reviews[0].offsetWidth + 40; // card width + margin
+            let reviewWidth = reviews[0].offsetWidth + 40; // kaart breedte + marge
             
-            // Function to move slider
+            // Functie om slider te bewegen
             function goToSlide(index) {
                 if (index < 0) {
                     index = reviews.length - 1;
@@ -325,12 +344,12 @@
                     index = 0;
                 }
                 
-                // On mobile, just show one card centered, don't slide if not needed
+                // Op mobiel: centreer de kaart
                 if (window.innerWidth < 768) {
                    reviewWidth = sliderInner.offsetWidth;
                    sliderInner.style.transform = 'translateX(' + (-index * reviewWidth) + 'px)';
                 } else {
-                    // On desktop, we center the slider
+                    // Op desktop: centreer de slider
                     const offset = (sliderInner.offsetWidth - reviewWidth + 40) / 2;
                     sliderInner.style.transform = 'translateX(' + (offset - (index * reviewWidth)) + 'px)';
                 }
@@ -338,7 +357,7 @@
                 currentIndex = index;
             }
 
-            // Recalculate width on resize
+            // Herbereken breedte bij verandering schermgrootte
             window.addEventListener('resize', () => {
                 if (window.innerWidth < 768) {
                     reviewWidth = sliderInner.offsetWidth;
@@ -356,11 +375,58 @@
                 goToSlide(currentIndex - 1);
             });
 
-            // Initial position
+            // Initiële positie van slider (begint bij de tweede kaart)
             goToSlide(1);
+            
+            // 4. Stel de initiële open status in voor het eerste FAQ-item
+            const firstFaqItem = faqItems[0];
+            if (firstFaqItem) {
+                const firstAnswer = firstFaqItem.querySelector('.faq-answer');
+                firstFaqItem.classList.add('active');
+                // Stel max-height in nadat de klasse actief is
+                firstAnswer.style.maxHeight = firstAnswer.scrollHeight + 'px';
+            }
 
+            // 5. Dropdown Menu Toggle (Werkt voor alle .dropdown elementen)
+            const dropdowns = document.querySelectorAll('.dropdown');
+            
+            dropdowns.forEach(dropdown => {
+                const toggle = dropdown.querySelector('.dropdown-toggle');
+                const menuLinks = dropdown.querySelectorAll('.dropdown-menu a');
+                
+                toggle.addEventListener('click', (e) => {
+                    e.preventDefault(); 
+                    
+                    // Sluit andere open dropdowns
+                    dropdowns.forEach(otherDropdown => {
+                        if (otherDropdown !== dropdown && otherDropdown.classList.contains('active')) {
+                            otherDropdown.classList.remove('active');
+                        }
+                    });
+
+                    // Toggle de huidige dropdown
+                    dropdown.classList.toggle('active');
+                });
+
+                // Sluit dropdown en mobiel menu wanneer een link in de dropdown wordt geklikt
+                menuLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        dropdown.classList.remove('active');
+                        navLinks.classList.remove('active');
+                    });
+                });
+            });
+
+            // Sluit dropdowns wanneer buiten de navigatie wordt geklikt
+            document.addEventListener('click', (e) => {
+                const navbar = document.querySelector('.navbar');
+                if (!navbar.contains(e.target)) {
+                    dropdowns.forEach(dropdown => {
+                        dropdown.classList.remove('active');
+                    });
+                }
+            });
         });
     </script>
-
 </body>
 </html>

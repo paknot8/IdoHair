@@ -702,6 +702,84 @@ Footer (#contact)
     border-radius: 8px;
 }
 
+/* Styling voor de Dropdown */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-arrow {
+    width: 14px;
+    height: 14px;
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+}
+
+.dropdown.active .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%; 
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-light-bg);
+    min-width: 200px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 10px 0;
+    z-index: 1100;
+    
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    border-radius: 4px;
+}
+
+.dropdown.active .dropdown-menu {
+    visibility: visible;
+    opacity: 1;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 20px;
+    text-align: left;
+    text-decoration: none;
+    color: var(--color-text-dark);
+    font-size: 14px;
+    border-bottom: none;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f0f0f0;
+    border-bottom: none;
+    color: var(--color-gold-accent);
+}
+
+/* Fix mobile dropdown appearance */
+@media (max-width: 1024px) {
+    .dropdown .dropdown-menu {
+        position: relative;
+        left: 0;
+        transform: none;
+        box-shadow: none;
+        border-top: 1px solid #eee;
+        border-radius: 0;
+        width: 100%;
+        min-width: auto;
+        padding: 0;
+    }
+    .dropdown-menu a {
+        padding: 10px 0;
+        text-align: center;
+    }
+}
+
 /* -------------------
 Responsive Design
 -------------------
