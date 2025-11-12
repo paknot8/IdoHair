@@ -138,23 +138,36 @@
 
 <main>
 
-    <section id="home" class="bg-primary-dark text-text-light flex items-center relative py-20" 
-             style="margin-top: 80px; min-height: calc(100vh - 80px);">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col justify-center items-center w-full h-full text-center relative">
-            
-            <div class="flex flex-col items-center pt-10">
-                <img src="images/IDO-Hair_logo_goud.png" alt="IDO HAIR Logo" class="h-auto max-h-[200px] w-auto mx-0">
-                
-                <p class="text-xl mt-6 mb-10">Experience world-class hair services</p>
-                <a href="#contact" class="btn btn-light inline-block font-sans text-xs tracking-wider uppercase border border-text-light py-3 px-7 transition-all duration-300 hover:bg-text-light hover:text-primary-dark">Book an Appointment</a>
-            </div>
+<section id="home" class="bg-primary-dark text-text-light flex items-center relative py-20"
+         style="margin-top: 80px; min-height: calc(100vh - 80px);">
 
-            <div class="absolute top-6 right-6 w-72 h-48 bg-bg-light text-text-dark flex items-center justify-center font-serif text-lg p-5 z-10 hidden md:flex">
-                A video will go here
-            </div>
-            
-        </div>
-    </section>
+  <div class="max-w-7xl mx-auto px-6 flex flex-col justify-center items-center w-full h-full text-center relative">
+
+    <!-- DESKTOP VIDEO (top-right corner) -->
+    <div class="absolute top-6 right-6 w-72 h-48 bg-bg-light text-text-dark flex items-center justify-center font-serif text-lg p-5 z-10 hidden md:flex">
+      A video will go here
+    </div>
+
+    <!-- MOBILE VIDEO (above content, same size) -->
+    <div class="flex md:hidden w-full justify-center mb-8">
+      <div class="w-72 h-48 bg-bg-light text-text-dark flex items-center justify-center font-serif text-lg p-5 rounded-lg shadow-lg">
+        A video will go here
+      </div>
+    </div>
+
+    <!-- LOGO + TEXT -->
+    <div class="flex flex-col items-center pt-10">
+      <img src="images/IDO-Hair_logo_goud.png" alt="IDO HAIR Logo" class="h-auto max-h-[200px] w-auto mx-0">
+      <p class="text-xl mt-6 mb-10">Experience world-class hair services</p>
+      <a href="#contact" 
+         class="btn btn-light inline-block font-sans text-xs tracking-wider uppercase border border-text-light py-3 px-7 transition-all duration-300 hover:bg-text-light hover:text-primary-dark">
+        Book an Appointment
+      </a>
+    </div>
+
+  </div>
+</section>
+
 
     <section id="about" class="bg-bg-light text-center py-24">
         <div class="max-w-7xl mx-auto px-6">
