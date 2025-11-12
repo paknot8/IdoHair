@@ -16,7 +16,7 @@
     <header class="header">
         <nav class="navbar container">
             <div class="nav-logo">
-                <a href="#home">IDO HAIR</a>
+                <a href="#home"><img src="images/IDO-Hair_logo_goud.png" alt="IDO HAIR Logo" class="header-logo-img"></a>
             </div>
             <ul class="nav-links" id="nav-links">
                 <li><a href="#services">Services</a></li>
@@ -41,16 +41,23 @@
 
     <main>
 
+        <!-- 1. Hero Section -->
         <section id="home" class="hero section-dark">
-            <div class="container">
+            <div class="container hero-center-content">
+                
                 <div class="hero-content">
-                    <h1 class="hero-logo">IDO<br>HAIR</h1>
+                    <!-- Logo Image in Hero - Placed FIRST in HTML for mobile-first order -->
+                    <img src="images/IDO-Hair_logo_goud.png" alt="IDO HAIR Logo" class="hero-logo-img">
+                    
                     <p>Experience world-class hair services</p>
                     <a href="#contact" class="btn btn-light">Book an Appointment</a>
                 </div>
+
+                <!-- Video Placeholder: Placed SECOND in HTML, moves to the right on desktop -->
                 <div class="hero-video-placeholder">
                     Hier komt een live video
                 </div>
+                
             </div>
         </section>
 
@@ -205,33 +212,42 @@
 
     </main>
     
+    <!-- Footer -->
     <footer id="contact" class="footer section-dark">
         <div class="container">
             <div class="footer-grid">
+                <!-- Column 1: Contact, Address, Hours (Combined) -->
                 <div>
-                    <a href="#home" class="footer-logo">IDO HAIR</a>
+                    <a href="#home" class="footer-logo"><img src="images/IDO-Hair_logo_goud.png" alt="IDO HAIR Logo" class="footer-logo-img"></a>
+
                     <h4>Contact:</h4>
                     <p>Email: <a href="mailto:info@idoshair.com">info@idoshair.com</a></p>
                     <p>Phone: <a href="tel:+31020777111">+31 (0) 20 777 111</a></p>
                     
                     <div class="address">
                         <h4>Address:</h4>
-                        <p>Tweede Jan van der<br>Heijdenstraat 41 III, 1074<br>XN Amsterdam, Netherlands</p>
+                        <p>Tweede Jan van der Heijdenstraat 41 III, 1074 XN Amsterdam, Netherlands</p>
                     </div>
-                </div>
-                
-                <div>
-                    <h4>Opening Hours:</h4>
+
                     <div class="hours">
+                        <h4>Opening Hours:</h4>
                         <p><span>Tue - Sat:</span> <span>10 am - 8 pm</span></p>
                         <p><span>Mon - closed</span></p>
                     </div>
                 </div>
 
+                <!-- Column 2: Google Map Embed -->
                 <div>
-                    <div class="footer-map-placeholder">
-                        MAP PLACEHOLDER
-                    </div>
+                    <!-- Google Maps Embed for Tweede Jan van der Heijdenstraat -->
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2435.0805362947087!2d4.887961276061321!3d52.35515327202306!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c609c125633b49%3A0xa08542b827e8d530!2sTweede%20Jan%20van%20der%20Heijdenstraat%2041%20III%2C%201074%20XN%20Amsterdam%2C%20Netherlands!5e0!3m2!1sen!2sus!4v1700684200000!5m2!1sen!2sus" 
+                        width="100%" 
+                        height="450" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
                 </div>
             </div>
         </div>

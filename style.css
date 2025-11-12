@@ -127,8 +127,16 @@ Header / Navbar
     align-items: center;
 }
 
+/* Add style for the image logo in the header */
+.header-logo-img {
+    height: 40px; /* Adjust height as needed for the header */
+    width: auto;
+    display: block;
+}
+
 .nav-logo a {
-    font-family: var(--font-serif);
+    /* Removed text styling */
+    font-family: var(--font-serif); 
     font-size: 28px;
     font-weight: 600;
     color: var(--color-gold-accent);
@@ -202,27 +210,33 @@ Hero Section (#home)
     min-height: 700px;
     display: flex;
     align-items: center;
-    position: relative;
+    position: relative; /* Container for the absolute video placeholder */
 }
 
-.hero .container {
+.hero-center-content {
+    /* Mobile-first: Stack children vertically */
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     width: 100%;
+    height: 100%;
+    position: relative;
+    text-align: center;
 }
 
 .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    flex-grow: 1;
+    padding-top: 40px;
 }
 
-.hero-logo {
-    font-family: var(--font-serif);
-    font-size: 12vw;
-    line-height: 0.9;
-    color: var(--color-gold-accent);
-    font-weight: 500;
+.hero-logo-img {
+    height: 35vh; 
+    max-height: 300px; 
+    width: auto;
     margin: 0;
 }
 
@@ -232,10 +246,16 @@ Hero Section (#home)
     margin-bottom: 40px;
 }
 
+/* Video placeholder uses absolute position on desktop */
 .hero-video-placeholder {
+    position: absolute; /* Default to absolute for desktop positioning */
+    top: 40px;
+    right: 40px;
     width: 300px;
-    height: 200px;
-    background-color: #fbfaf8;
+    height: 200px; /* Base dimensions for desktop */
+    aspect-ratio: 1.5; /* Lock aspect ratio (300px width / 200px height = 1.5) */
+
+    background-color: var(--color-light-bg);
     color: var(--color-text-dark);
     display: flex;
     align-items: center;
@@ -244,8 +264,28 @@ Hero Section (#home)
     font-family: var(--font-serif);
     font-size: 18px;
     padding: 20px;
-    align-self: flex-start;
-    margin-top: 40px;
+    z-index: 50;
+}
+
+
+/* Media Query for Mobile (reverts to relative positioning and full width) */
+@media (max-width: 1024px) {
+    .hero-video-placeholder {
+        position: relative; /* Resets to normal flow */
+        top: 0;
+        right: 0;
+        /* Ensures the logo (first in HTML) appears above the video (second in HTML) */
+        order: 2; 
+        
+        width: 80%; 
+        max-width: 300px; 
+        margin: 40px auto 0 auto; /* Margin above the button */
+    }
+    
+    .hero-content {
+        /* Ensures logo/text block is ordered first */
+        order: 1; 
+    }
 }
 
 /* -------------------
@@ -559,12 +599,14 @@ Footer (#contact)
 }
 
 .footer-grid {
+    /* Changed from 3fr 1fr 4fr to a more balanced 1fr 1fr layout */
     display: grid;
-    grid-template-columns: 3fr 1fr 4fr;
+    grid-template-columns: 1fr 1fr; 
     gap: 60px;
 }
 
 .footer-logo {
+    /* Removed text styling */
     font-family: var(--font-serif);
     font-size: 48px;
     font-weight: 600;
@@ -573,6 +615,13 @@ Footer (#contact)
     letter-spacing: 1px;
     margin-bottom: 32px;
     display: block;
+}
+
+/* Add style for the image logo in the footer */
+.footer-logo-img {
+    height: 100px; /* Larger size for the footer */
+    width: auto;
+    margin-bottom: 32px; /* Replaces margin from text logo */
 }
 
 .footer h4 {
