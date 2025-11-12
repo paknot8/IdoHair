@@ -9,8 +9,8 @@ Base & Variables
     --color-text-light: #EAE3D9;
     --color-serif-heading: #6D5F43;
     --color-gold-accent: #B08F3D;
-    --font-serif: 'EB Garamond', serif;
-    --font-sans: 'Montserrat', sans-serif;
+    --font-serif: 'EB Garamond', serif; /* Gebruik nu EB Garamond voor koppen */
+    --font-sans: 'Open Sauce Sans', sans-serif; /* Open Sauce Sans blijft voor de hoofdtekst */
 }
 
 html {
@@ -346,7 +346,9 @@ Services Section (#services)
     background-size: cover;
     background-position: center;
     display: flex;
-    align-items: flex-end;
+    flex-direction: column; /* Stacks h3 and p vertically */
+    justify-content: flex-end; /* Pushes the stack to the bottom */
+    align-items: flex-start; /* Aligns the text stack to the left */
     padding: 30px;
 }
 
@@ -355,6 +357,20 @@ Services Section (#services)
     color: white;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     margin: 0;
+    font-style: italic; /* Om de schuine look van de foto te matchen */
+    line-height: 1.1;
+}
+
+.service-subtitle {
+    color: white;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding-bottom: 5px; /* Ruimte boven de lijn */
+    border-bottom: 1px solid white;
+    margin-top: 10px;
+    font-weight: 500;
 }
 
 /* -------------------
