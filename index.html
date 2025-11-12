@@ -1,844 +1,338 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ido Hair</title>
-    <meta name="description" content="Welkom bij Ido Hair – jouw persoonlijke kapper voor authentieke kapsels en professionele haarverzorging. Maak vandaag nog een afspraak!">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- Bootstrap Icons for social media -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-
-    <style>
-        /* Custom styles for the PDF-inspired design */
-        body {
-            font-family: 'Inter', sans-serif;
-            color: #333333; /* Dark gray for general text */
-        }
-        .text-gold-custom {
-            color: #FFD700; /* Custom gold color */
-        }
-        .bg-olive-dark-custom {
-            background-color: #3A3A1F; /* Custom dark olive green for sections */
-        }
-        .text-shadow-custom {
-            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
-        }
-        .product-img-fit {
-            height: 160px; /* Adjusted height for product images to fit better */
-            object-fit: contain; /* Ensure image fits within its box */
-            width: 100%;
-            background-color: transparent; /* Ensure transparent background */
-        }
-        /* Specific styling for the header as per PDF */
-        .pdf-header {
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .pdf-header .nav-link-custom {
-            padding-bottom: 4px; /* Space for border-bottom */
-            transition: border-color 0.3s ease-in-out, color 0.3s ease-in-out;
-            text-decoration: none; /* Ensure no default underline */
-        }
-        .pdf-header .nav-link-custom.active,
-        .pdf-header .nav-link-custom:hover {
-            border-bottom: none; /* No underline on active/hover */
-            color: #333333; /* Ensure text remains dark */
-            text-decoration: none; /* Explicitly no underline */
-        }
-
-        /* Specific styling for the hero banner as per PDF */
-        .hero-banner {
-            height: 500px; /* Fixed height for the banner */
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-        .hero-banner-overlay {
-            background-color: rgba(0, 0, 0, 0.1); /* Slight overlay for readability */
-        }
-        .hero-book-now-btn {
-            background-color: #FFFFFF; /* White button */
-            color: #333333; /* Dark text */
-            font-weight: 600;
-            padding: 12px 32px;
-            border-radius: 9999px; /* Full rounded */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s ease-in-out;
-        }
-        .hero-book-now-btn:hover {
-            background-color: #f0f0f0; /* Light gray on hover */
-        }
-
-        /* Styling for the quote banner */
-        .quote-banner {
-            height: 100vh; /* Full viewport height */
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            padding: 2rem;
-        }
-        .quote-banner .quote-content {
-            background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background for text */
-            padding: 20px;
-            border-radius: 8px;
-        }
-        .quote-banner h2 {
-            font-size: 2.5rem; /* Large font size */
-            line-height: 1.4;
-            font-weight: 700; /* Bold font weight */
-            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6); /* Text shadow */
-        }
-        .quote-banner p {
-            font-size: 1.125rem;
-            font-weight: 700; /* Bold font weight */
-            margin-top: 1rem;
-            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6); /* Text shadow */
-        }
-
-        /* Testimonials section specific styling */
-        .testimonial-card {
-            background-color: #FFFFFF;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 1.5rem;
-            display: flex; /* Enable flexbox for vertical alignment */
-            flex-direction: column; /* Stack items vertically */
-            height: 100%; /* Ensure cards take full height in grid */
-        }
-        .testimonial-card .card-text {
-            flex-grow: 1; /* Allow text to grow and push stars down */
-        }
-        .testimonial-img {
-            width: 100px;
-            height: 100px;
-            border-radius: 9999px; /* Fully rounded for profile pictures */
-            object-fit: cover;
-            margin: 0 auto 1rem auto;
-        }
-        .testimonial-stars {
-            font-size: 1.5rem; /* Larger stars */
-        }
-
-        /* Gallery Before/After Hover Effect & Carousel Styling */
-        .gallery-carousel-container {
-            position: relative;
-            overflow: hidden; /* Hide scrollbar */
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
-        }
-        .gallery-carousel-container::-webkit-scrollbar {
-            display: none; /* Chrome, Safari, Opera */
-        }
-
-        .gallery-track {
-            display: flex;
-            scroll-snap-type: x mandatory;
-            overflow-x: scroll; /* Enable horizontal scrolling */
-            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-            scroll-behavior: smooth; /* Smooth scroll on button click */
-            gap: 1.5rem; /* Tailwind gap-6 */
-        }
-        .gallery-track > * {
-            flex-shrink: 0; /* Prevent items from shrinking */
-            scroll-snap-align: start;
-            width: 100%; /* Default to full width for small screens */
-        }
-        @media (min-width: 640px) { /* sm breakpoint */
-            .gallery-track > * {
-                width: calc(50% - 0.75rem); /* Two items per row with gap */
-            }
-        }
-        @media (min-width: 1024px) { /* lg breakpoint */
-            .gallery-track > * {
-                width: calc(25% - 1.125rem); /* Four items per row with gap (3 gaps of 1.5rem / 4 items) */
-            }
-        }
-
-        .gallery-item-wrapper {
-            position: relative;
-            overflow: hidden; /* Hide overflow from zoom */
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            height: 450px; /* Increased height for the gallery items */
-        }
-        .gallery-item-wrapper img {
-            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .gallery-item-wrapper .img-before {
-            opacity: 1;
-            z-index: 2;
-        }
-        .gallery-item-wrapper .img-after {
-            opacity: 0;
-            z-index: 1; /* Start behind before image */
-            transform: scale(1.0); /* Initial scale */
-        }
-        .gallery-item-wrapper:hover .img-before {
-            opacity: 0;
-            transform: scale(0.9); /* Slight zoom out for before */
-        }
-        .gallery-item-wrapper:hover .img-after {
-            opacity: 1;
-            transform: scale(1.05); /* Zoom in for after */
-        }
-
-        /* Carousel Navigation Buttons */
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            padding: 10px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 10;
-            transition: background-color 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px; /* Fixed width for circular button */
-            height: 40px; /* Fixed height for circular button */
-        }
-        .carousel-btn:hover {
-            background-color: rgba(0, 0, 0, 0.7);
-        }
-        .carousel-btn-left {
-            left: 10px;
-        }
-        .carousel-btn-right {
-            right: 10px;
-        }
-
-        /* Socials Image Card Specific Styling */
-        .social-image-card {
-            width: 250px; /* Fixed width for consistency on smaller screens */
-            height: 444px; /* Adjusted height for TikTok-like aspect ratio (250 * 16/9) */
-            position: relative;
-            border-radius: 0.5rem;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            flex-shrink: 0; /* Prevent shrinking in flex container */
-        }
-        .social-image-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Responsive adjustments for social-image-card */
-        @media (min-width: 640px) { /* sm breakpoint */
-            .social-image-card {
-                width: 280px; /* Slightly larger on sm screens */
-                height: 498px; /* Maintain aspect ratio */
-            }
-        }
-        @media (min-width: 768px) { /* md breakpoint */
-            .social-image-card {
-                width: 300px; /* Larger on md screens */
-                height: 533px; /* Maintain aspect ratio */
-            }
-        }
-        @media (min-width: 1024px) { /* lg breakpoint */
-            .social-image-card {
-                width: 320px; /* Even larger on lg screens */
-                height: 569px; /* Maintain aspect ratio */
-            }
-        }
-
-        /* Mobile menu specific styles */
-        .mobile-menu {
-            display: none; /* Hidden by default */
-            flex-direction: column;
-            background-color: white;
-            position: absolute;
-            top: 100%; /* Position below the header */
-            left: 0;
-            width: 100%;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            z-index: 50; /* Ensure it's above other content */
-            padding: 1rem 0;
-        }
-        .mobile-menu.open {
-            display: flex;
-        }
-        .mobile-menu li {
-            width: 100%;
-            text-align: center;
-            padding: 0.5rem 0;
-        }
-        .mobile-menu a {
-            display: block;
-            padding: 0.5rem 1rem;
-            color: #333333;
-            font-weight: 500;
-            transition: background-color 0.3s ease;
-        }
-        .mobile-menu a:hover {
-            background-color: #f0f0f0;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    
 </head>
-<body class="font-sans text-gray-800">
+<body>
 
-    <!-- Header -->
-    <header class="pdf-header bg-white py-6 relative"> <!-- Added relative for mobile menu positioning -->
-        <div class="container mx-auto px-4 flex justify-between items-center">
-            <div class="flex-shrink-0">
-                <img src="https://i.ibb.co/fYGRrPrX/IDO-Hair-logo-goud.png" alt="Ido Hair Logo" class="h-20 w-auto">
+    <header class="header">
+        <nav class="navbar container">
+            <div class="nav-logo">
+                <a href="#home">IDO HAIR</a>
             </div>
-            
-            <!-- Desktop Navigation -->
-            <nav class="hidden md:block flex-grow"> <!-- Added flex-grow to center the nav -->
-                <ul class="flex justify-center space-x-6 text-gray-800 text-base font-medium">
-                    <li><a href="#home" class="nav-link-custom active">Home</a></li>
-                    <li><a href="#behandelingen-sectie" class="nav-link-custom">Services</a></li>
-                    <li><a href="#over-ons" class="nav-link-custom">Team</a></li>
-                    <li><a href="#socials" class="nav-link-custom">Socials</a></li>
-                    <li><a href="#contact" class="nav-link-custom">Salon</a></li>
-                    <li><a href="#producten-sectie" class="nav-link-custom">Products</a></li>
-                    <li><a href="#contact" class="nav-link-custom">Contact</a></li>
-                </ul>
-            </nav>
-
-            <!-- Mobile Menu Toggle (Hamburger) -->
-            <button id="mobile-menu-toggle" class="md:hidden text-gray-800 focus:outline-none">
-                <i class="bi bi-list text-3xl"></i> <!-- Hamburger icon -->
-            </button>
-        </div>
-
-        <!-- Mobile Menu -->
-        <nav id="mobile-menu" class="mobile-menu md:hidden">
-            <ul>
-                <li><a href="#home" class="nav-link-custom">Home</a></li>
-                <li><a href="#behandelingen-sectie" class="nav-link-custom">Services</a></li>
-                <li><a href="#over-ons" class="nav-link-custom">Team</a></li>
-                <li><a href="#socials" class="nav-link-custom">Socials</a></li>
-                <li><a href="#contact" class="nav-link-custom">Salon</a></li>
-                <li><a href="#producten-sectie" class="nav-link-custom">Products</a></li>
-                <li><a href="#contact" class="nav-link-custom">Contact</a></li>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About Ido</a></li>
+                <li><a href="#contact">Book now</a></li>
+                <li><a href="#home" class="active">Home</a></li>
             </ul>
+            <div class="nav-icons">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A1.875 1.875 0 0 1 17.625 22.5h-11.25a1.875 1.875 0 0 1-1.875-2.382Z" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" /></svg>
+            </div>
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" id="menu-icon-open">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
         </nav>
     </header>
+
+    <main>
+
+        <section id="home" class="hero section-dark">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-logo">IDO<br>HAIR</h1>
+                    <p>Experience world-class hair services</p>
+                    <a href="#contact" class="btn btn-light">Book an Appointment</a>
+                </div>
+                <div class="hero-video-placeholder">
+                    Hier komt een live video
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="welcome section section-light text-center">
+            <div class="container">
+                <h2>Welcome at Ido's Hair.</h2>
+                <p>Located in the heart of De Pijp, Amsterdam. Here, it’s not just about the treatment, it’s about taking a moment for yourself.</p>
+                <p>With a creative eye, high-quality haircare, and personal attention, every detail is tailored to you.</p>
+                <p>Elegant yet relaxed, an oasis where passion for hair and genuine care come together</p>
+                <a href="#services">Read more</a>
+            </div>
+        </section>
+
+        <section id="services" class="services section section-light text-center">
+            <div class="container">
+                <h2>Our Services</h2>
+                <div class="services-grid">
+                    <div class="service-card" style="background-image: url('https://placehold.co/600x600/ccc/888?text=Always+in+Style');">
+                        <h3>ALWAYS IN STYLE</h3>
+                    </div>
+                    <div class="service-card" style="background-image: url('https://placehold.co/600x600/bbb/777?text=Big,+Bold+Volume');">
+                        <h3>BIG, BOLD VOLUME</h3>
+                    </div>
+                    <div class="service-card" style="background-image: url('https://placehold.co/600x600/aaa/666?text=Color+and+Highlights');">
+                        <h3>Color and Highlights</h3>
+                    </div>
+                    <div class="service-card" style="background-image: url('https://placehold.co/600x600/999/555?text=Haircut+and+Styling');">
+                        <h3>Haircut and Styling</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="consultation" class="consultation section-dark text-center">
+            <div class="container">
+                <h2>Hair consultation</h2>
+                <h3>Discover what truly suits you</h3>
+                <p>Not sure yet what style you’re going for? During a hair diagnosis, we take a close look at your hair texture, scalp, and natural features. Together, we’ll discover which style, length, or color complements you.</p>
+                <p>I take the time to listen to what matters to you. I’ll give honest advice on what your hair needs, what’s achievable, and how to maintain it at home.</p>
+                <p>A hair diagnosis, is when you’re ready for a change or simply want to understand your hair better.</p>
+                <a href="#contact" class="btn btn-light">Book an Appointment</a>
+            </div>
+        </section>
+
+        <div class="image-divider" style="background-image: url('images/hair.png');">
+            </div>
+
+        <section id="faq" class="faq section-white">
+            <div class="container">
+                <h2 class="text-center">More information</h2>
+                
+                <div class="faq-item active">
+                    <div class="faq-question">
+                        <h3>Moet ik bellen voor een afspraak?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Soms plannen cliënten te weinig tijd in voor hun behandeling en kunnen we om die reden niet al hun wensen uitvoeren. Bijv. highlights, balayage en haarmaskers zijn erg tijdrovend. Om teleurstelling te voorkomen is het verstandig om ons eerst te bellen. Zo kunnen we samen effectief uw perfecte behandeling plannen.<br><br><strong>Bel ons: 020-331 3440</strong></p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Afspraak annuleren?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Details about cancelling an appointment can go here.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Love all, Style all</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Information about the "Love all, Style all" philosophy.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Waar kan ik parkeren?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Parking information can be detailed here.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <section id="reviews" class="reviews section text-center">
+            <div class="container">
+                <h2>Reviews</h2>
+                <div class="review-slider">
+                    <div class="review-slider-inner" id="review-slider-inner">
+                        
+                        <div class="review-card">
+                            <p>“Great place. Been going here for a bit now. I always book last minute so have had cuts from several different professionals. Everyone is solid. Place is well run and crafts an enjoyable experience.”</p>
+                            <p class="author">Andrew Petryszak</p>
+                        </div>
+                        
+                        <div class="review-card">
+                            <p>“Had a fantastic experience with Will, who gave me a terrific cut, suggested healthy hair maintenance habits and treated me with the utmost respect. Highly recommend the entire experience and will be returning!”</p>
+                            <p class="author">Charles Greenwald</p>
+                        </div>
+
+                        <div class="review-card">
+                            <p>“Great place. Been going here for a bit now. I always book last minute so have had cuts from several different professionals. Everyone is solid. Place is well run and crafts an enjoyable experience.”</p>
+                            <p class="author">Andrew Petryszak</p>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="slider-controls">
+                    <button class="slider-btn" id="prev-review">&larr;</button>
+                    <button class="slider-btn" id="next-review">&rarr;</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="perks" class="section-white section text-center">
+            <div class="container">
+                <div class="review-perks">
+                    <div class="perk">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h-6.188c-.225-1.015-.86-1.85-1.57-2.587M15 14.25V5.25a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 5.25v9m12 0-3 3m0 0-3-3m3 3V5.25" /></svg>
+                        <h4>SNELLE LEVERING</h4>
+                        <p>Binnen 1 tot 2 werkdagen verzonden</p>
+                    </div>
+                    <div class="perk">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l.003-2.915A11.96 11.96 0 0 1 3.375 6.42a11.93 11.93 0 0 1 3.5-1.619.5.5 0 0 1 .6.324l.63 3.148a.5.5 0 0 1-.3.633A4.9 4.9 0 0 0 5.25 9.61v.837" /><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9.61a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H4.5a.75.75 0 0 1-.75-.75V9.61Zm4.5 0a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H8.25a.75.75 0 0 1-.75-.75V9.61Zm4.5 0a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H12.75a.75.75 0 0 1-.75-.75V9.61Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 12l-.003-2.915a11.96 11.96 0 0 0-1.125-2.665 11.93 11.93 0 0 0-3.5-1.619.5.5 0 0 0-.6.324l-.63 3.148a.5.5 0 0 0 .3.633 4.9 4.9 0 0 1 2.378 1.51v.837M19.5 9.61a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75h-.008a.75.75 0 0 1-.75-.75V9.61Zm-4.5 0a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75h-.008a.75.75 0 0 1-.75-.75V9.61Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 12.75v6m0 0 3-3m-3 3-3-3m3 3V3.75M21 12.75v6m0 0 3-3m-3 3-3-3m3 3V3.75M3 12.75v6m0 0 3-3m-3 3-3-3m3 3V3.75" /></svg>
+                        <h4>GRATIS VERZENDING</h4>
+                        <p>Gratis verzending bij een besteding vanaf 40,- of bij afhalen</p>
+                    </div>
+                    <div class="perk">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" /></svg>
+                        <h4>FIJNE KLANTENSERVICE</h4>
+                        <p>Klantvragen worden binnen 1 werkdag beantwoord</p>
+                    </div>
+                    <div class="perk">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h6m-6 2.25h6M9 16.5v3m0 0v1.5m0-1.5a1.5 1.5 0 0 0 1.5-1.5H7.5A1.5 1.5 0 0 0 9 19.5Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 9.75v10.5m0-10.5a1.5 1.5 0 0 1 1.5-1.5h1.5a1.5 1.5 0 0 1 1.5 1.5v10.5m-4.5 0v-1.5m0 0H12v1.5m3-1.5a1.5 1.5 0 0 0-1.5-1.5h-1.5a1.5 1.5 0 0 0-1.5 1.5v1.5m4.5-1.5v-1.5m0 0v-3.75m0 3.75a1.5 1.5 0 0 1-1.5-1.5H12a1.5 1.5 0 0 1-1.5-1.5v-1.5m3 1.5v-1.5" /></svg>
+                        <h4>VEILIG BETALEN</h4>
+                        <p>Betaal veilig en snel met uitgebreide betaalmogelijkheden</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
     
-    <!-- Home / Banner met Book Now knop -->
-    <section id="home" class="hero-banner flex items-end justify-center pb-8" style="background-image: url('https://i.ibb.co/mrbNTk4K/IMG-1353.jpg');">
-        <div class="hero-banner-overlay absolute inset-0 flex items-end justify-center pb-8">
-            <a href="#contact" class="hero-book-now-btn">BOOK NOW</a>
-        </div>
-    </section>
-
-    <!-- Meet Ido Zeldenrust sectie (Team) -->
-    <section id="over-ons" class="w-full bg-white flex flex-col md:flex-row items-stretch">
-        <!-- Text column -->
-        <div class="md:w-1/2 px-6 md:px-12 py-12 flex items-center">
-            <div>
-                <h2 class="text-3xl md:text-4xl font-semibold text-gray-800 mb-6">Meet<br>Ido Zeldenrust</h2>
-                <p class="text-gray-600 text-lg leading-relaxed mb-4">
-                    Our founder, Manpreet, is a Registered Dietitian who is deeply passionate about educating people on how to maintain good health through nutritious food.
-                </p>
-            </div>
-        </div>
-        <!-- Image column - now directly part of the section's flex items -->
-        <div class="md:w-1/2 flex-shrink-0">
-            <img src="https://i.ibb.co/d0VB9NP1/Ido-Knip.jpg" alt="Ido Zeldenrust knipt haar" class="w-full h-full object-cover">
-        </div>
-    </section>
-
-    <!-- Haar behandelingen sectie (Services) -->
-    <section id="behandelingen-sectie" class="bg-white py-16 px-6 md:px-12">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl md:text-4xl font-semibold text-gray-800 mb-10 text-left">Haar<br>behandelingen</h2>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
-                <div class="relative">
-                    <img src="https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg" alt="Hair Treatments" class="w-full h-72 object-cover rounded">
-                    <span class="absolute inset-0 flex items-center justify-center text-white text-xl font-bold text-shadow-custom">HAIR<br>TREATMENTS</span>
-                </div>
-                <div class="relative">
-                    <img src="https://images.pexels.com/photos/3738343/pexels-photo-3738343.jpeg" alt="Coloring" class="w-full h-72 object-cover rounded">
-                    <span class="absolute inset-0 flex items-center justify-center text-white text-xl font-bold text-shadow-custom">COLORING</span>
-                </div>
-                <div class="relative">
-                    <img src="https://images.pexels.com/photos/3993460/pexels-photo-3993460.jpeg" alt="Extensions" class="w-full h-72 object-cover rounded">
-                    <span class="absolute inset-0 flex items-center justify-center text-white text-xl font-bold text-shadow-custom">EXTENSIONS</span>
-                </div>
-            </div>
-
-            <p class="text-gray-600 text-lg text-center">Need more information about your hairstyle?<br>We offer the above services.</p>
-        </div>
-    </section>
-
-    <!-- Socials Sectie -->
-    <section id="socials" class="bg-white py-16 px-6 md:px-12">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-3xl md:text-4xl font-semibold text-gray-800 mb-10 text-center">Socials</h2>
-            <div class="overflow-x-auto pb-4 relative gallery-carousel-container">
-                <div id="social-track" class="flex space-x-6 justify-center">
-                    <!-- Image Card 1 -->
-                    <div class="social-image-card">
-                        <img src="https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg" alt="Social Image 1">
-                        <div class="absolute inset-0 bg-black bg-opacity-30 flex flex-col items-center justify-center text-white text-center p-4">
-                            <p class="text-xl font-bold text-shadow-custom">Haarstyling Inspiratie</p>
-                        </div>
-                    </div>
-                    <!-- Image Card 2 -->
-                    <div class="social-image-card">
-                        <img src="https://images.pexels.com/photos/3992870/pexels-photo-3992870.jpeg" alt="Social Image 2">
-                        <div class="absolute inset-0 bg-black bg-opacity-30 flex flex-col items-center justify-center text-white text-center p-4">
-                            <p class="text-xl font-bold text-shadow-custom">Achter de Schermen</p>
-                        </div>
-                    </div>
-                    <!-- Image Card 3 -->
-                    <div class="social-image-card">
-                        <img src="https://images.pexels.com/photos/3762804/pexels-photo-3762804.jpeg" alt="Social Image 3">
-                        <div class="absolute inset-0 bg-black bg-opacity-30 flex flex-col items-center justify-center text-white text-center p-4">
-                            <p class="text-xl font-bold text-shadow-custom">Kleuringen & Highlights</p>
-                        </div>
-                    </div>
-                    <!-- Image Card 4 -->
-                    <div class="social-image-card">
-                        <img src="https://images.pexels.com/photos/3993460/pexels-photo-3993460.jpeg" alt="Social Image 4">
-                        <div class="absolute inset-0 bg-black bg-opacity-30 flex flex-col items-center justify-center text-white text-center p-4">
-                            <p class="text-xl font-bold text-shadow-custom">Extensions Show</p>
-                        </div>
-                    </div>
-                    <!-- Image Card 5 -->
-                    <div class="social-image-card">
-                        <img src="https://images.pexels.com/photos/3738343/pexels-photo-3738343.jpeg" alt="Social Image 5">
-                        <div class="absolute inset-0 bg-black bg-opacity-30 flex flex-col items-center justify-center text-white text-center p-4">
-                            <p class="text-xl font-bold text-shadow-custom">Stijlvolle Kapsels</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Navigatie pijlen -->
-                <button class="carousel-btn carousel-btn-left" onclick="scrollSocials(-1)">
-                    <i class="bi bi-chevron-left"></i>
-                </button>
-                <button class="carousel-btn carousel-btn-right" onclick="scrollSocials(1)">
-                    <i class="bi bi-chevron-right"></i>
-                </button>
-            </div>
-
-            <div class="text-center mt-12">
-                <a href="#contact" class="bg-black text-white font-semibold px-8 py-3 rounded-lg shadow-md hover:bg-gray-800 transition duration-300">BOOK APPOINTMENT</a>
-                <div class="mt-6 text-gray-700 text-lg">
-                    <span class="text-orange-500">★★★★★</span> 5.0 <span class="text-gray-500">based on 87 reviews</span>
-                </div>
-                <p class="text-gray-500 text-sm mt-2">salonized | <a href="#" class="text-gray-500 underline hover:text-gray-700">See all ></a></p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Galerij sectie -->
-    <section id="galerij" class="bg-white py-16 px-6 md:px-12">
-        <div class="max-w-6xl mx-auto">
-            <!-- Titelrij: Galerij en by Ido Zeldenrust -->
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 items-end mb-6">
-                <h2 class="text-5xl font-extrabold text-gray-800 col-span-2 sm:col-span-2 text-left">GALERIJ</h2>
-                <div class="col-span-2 sm:col-start-3 sm:col-span-2 text-right">
-                    <p class="text-2xl sm:text-3xl font-extrabold text-gray-800 leading-tight">by<br>Ido<br>Zeldenrust</p>
-                </div>
-            </div>
-
-            <!-- Foto grid met Before/After hover effect -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <!-- Voor & Na Paar 1 -->
-                <div class="gallery-item-wrapper">
-                    <img src="https://i.ibb.co/35RWQt5D/1-Before.jpg" alt="Before Foto 1" class="img-before">
-                    <img src="https://i.ibb.co/6JmVxP29/1-After.jpg" alt="After Foto 1" class="img-after">
-                </div>
-                <!-- Voor & Na Paar 2 -->
-                <div class="gallery-item-wrapper">
-                    <img src="https://i.ibb.co/YBFqtc0Z/2-Before.jpg" alt="Before Foto 2" class="img-before">
-                    <img src="https://i.ibb.co/GQP28NvM/2-After.jpg" alt="After Foto 2" class="img-after">
-                </div>
-                <!-- Voor & Na Paar 3 -->
-                <div class="gallery-item-wrapper">
-                    <img src="https://i.ibb.co/DD3FvwmH/3-Before.jpg" alt="Before Foto 3" class="img-before">
-                    <img src="https://i.ibb.co/5x6QtkcS/3-After.jpg" alt="After Foto 3" class="img-after">
-                </div>
-                <!-- Voor & Na Paar 4 -->
-                <div class="gallery-item-wrapper">
-                    <img src="https://i.ibb.co/DHMtDRYt/Man-Befire.jpg" alt="Before Foto 4" class="img-before">
-                    <img src="https://i.ibb.co/d0VB9NP1/Ido-Knip.jpg" alt="After Foto 4 (Ido Knip)" class="img-after">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Our Products sectie -->
-    <section id="producten-sectie" class="bg-white py-16 px-6 md:px-12">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-            <!-- Tekst links -->
-            <div>
-                <h2 class="text-5xl font-extrabold text-gray-800 mb-4 leading-none">Our<br>Products</h2>
-                <p class="tracking-widest uppercase text-sm text-gray-500 mb-4">For Everybody</p>
-                <p class="text-gray-700 text-base leading-relaxed">
-                    Mathice Beauty uses ethically<br>
-                    sourced, fair trade, natural<br>
-                    materials that are expertly crafted<br>
-                    to match users needs.
-                </p>
-            </div>
-
-            <!-- Producten rechts -->
-            <div class="grid grid-cols-3 gap-6 items-start text-center">
+    <footer id="contact" class="footer section-dark">
+        <div class="container">
+            <div class="footer-grid">
                 <div>
-                    <img src="https://i.ibb.co/ZzRrgSZT/Conditioner.png" alt="Conditioner Care" class="product-img-fit mx-auto mb-2">
-                    <p class="font-medium text-gray-800">Conditioner Care</p>
+                    <a href="#home" class="footer-logo">IDO HAIR</a>
+                    <h4>Contact:</h4>
+                    <p>Email: <a href="mailto:info@idoshair.com">info@idoshair.com</a></p>
+                    <p>Phone: <a href="tel:+31020777111">+31 (0) 20 777 111</a></p>
+                    
+                    <div class="address">
+                        <h4>Address:</h4>
+                        <p>Tweede Jan van der<br>Heijdenstraat 41 III, 1074<br>XN Amsterdam, Netherlands</p>
+                    </div>
                 </div>
+                
                 <div>
-                    <img src="https://i.ibb.co/1tW3n7Tm/HairMist.png" alt="Hair mist" class="product-img-fit mx-auto mb-2">
-                    <p class="font-medium text-gray-800">Hair mist</p>
+                    <h4>Opening Hours:</h4>
+                    <div class="hours">
+                        <p><span>Tue - Sat:</span> <span>10 am - 8 pm</span></p>
+                        <p><span>Mon - closed</span></p>
+                    </div>
                 </div>
+
                 <div>
-                    <img src="https://i.ibb.co/99sYr1fW/Shampoo.png" alt="Shampoo Care" class="product-img-fit mx-auto mb-2">
-                    <p class="font-medium text-gray-800">Shampoo Care</p>
+                    <div class="footer-map-placeholder">
+                        MAP PLACEHOLDER
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Inspiratie Quote Banner -->
-    <section class="quote-banner" style="background-image: url('https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg');">
-        <div class="quote-content">
-            <h2 class="font-bold leading-relaxed mb-6">
-                Wij geloven dat goed haar<br>
-                begint met luisteren, met<br>
-                aandacht voor jouw wensen<br>
-                en een stijl die bij je past
-            </h2>
-            <p class="font-bold">Ido Zeldenrust</p>
-        </div>
-    </section>
-
-    <!-- Testimonials sectie -->
-    <section id="testimonials" class="bg-white py-16 px-6 md:px-12">
-        <div class="max-w-6xl mx-auto text-center">
-            <h2 class="text-4xl font-extrabold text-gray-800 mb-12">Testimonials from clients</h2>
-
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-10 text-center items-stretch"> <!-- Added items-stretch for equal height cards -->
-                <!-- Jamie -->
-                <div class="testimonial-card">
-                    <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Jamie Folsom Profile" class="testimonial-img">
-                    <h3 class="text-xl font-bold text-gray-800">Jamie Folsom</h3>
-                    <p class="card-text text-gray-600 mt-2 text-sm leading-relaxed">
-                        "Ik kom hier al 14 jaar met veel plezier.<br>
-                        Elke keer weer word ik geholpen met<br>
-                        dezelfde zorg en aandacht als de<br>
-                        eerste keer. Ze luisteren echt naar wat<br>
-                        je wilt, en het resultaat is altijd precies<br>
-                        goed. Het voelt vertrouwd."
-                    </p>
-                    <div class="text-orange-500 mt-3 testimonial-stars">★★★★★</div>
-                </div>
-
-                <!-- Ryan -->
-                <div class="testimonial-card">
-                    <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Ryan Hughes Profile" class="testimonial-img">
-                    <h3 class="text-xl font-bold text-gray-800">Ryan Hughes</h3>
-                    <p class="card-text text-gray-600 mt-2 text-sm leading-relaxed">
-                        "Sinds een paar maanden kom ik hier,<br>
-                        en ik was meteen op mijn gemak. Ze<br>
-                        nemen de tijd, denken met je mee en<br>
-                        geven eerlijk advies. Mijn haar voelt en<br>
-                        zit beter dan ooit."
-                    </p>
-                    <div class="text-orange-500 mt-3 testimonial-stars">★★★★★</div>
-                </div>
-
-                <!-- Anthony -->
-                <div class="testimonial-card">
-                    <img src="https://images.pexels.com/photos/1043474/pexels-photo-1043449.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Anthony Garrett Profile" class="testimonial-img">
-                    <h3 class="text-xl font-bold text-gray-800">Anthony Garrett</h3>
-                    <p class="card-text text-gray-600 mt-2 text-sm leading-relaxed">
-                        "Ik ben hier drie jaar geleden<br>
-                        terechtgekomen op aanraden van een<br>
-                        vriendin, en ik wil nergens anders<br>
-                        meer naartoe. Ze zijn professioneel,<br>
-                        vriendelijk en het resultaat is altijd<br>
-                        verzorgd en stijlvol."
-                    </p>
-                    <div class="text-orange-500 mt-3 testimonial-stars">★★★★★</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Get in Touch Section (Contact) -->
-    <section id="contact" class="bg-olive-dark-custom text-white py-16 px-6 md:px-12">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start">
-            <!-- Left Column -->
-            <div>
-                <h2 class="text-4xl font-extrabold mb-6">GET IN<br>TOUCH</h2>
-                <p class="mb-2">
-                    123 Anywhere St.<br>
-                    Any City<br>
-                    ST 123456<br>
-                    Country
-                </p>
-                <p class="mt-4 mb-2">
-                    Telephone: 123-456789<br>
-                    Mobile: +91-123-456-7890
-                </p>
-                <p class="font-semibold">idoscuttingcrew@yahoo.com</p>
-
-                <!-- Social Icons -->
-                <div class="flex space-x-6 mt-6 text-white text-2xl">
-                    <a href="https://www.instagram.com/idoscuttingcrew/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-                    <a href="mailto:idoscuttingcrew@yahoo.com" aria-label="Email"><i class="bi bi-envelope-fill"></i></a>
-                </div>
-            </div>
-
-            <!-- Right Column -->
-            <div>
-                <h3 class="text-2xl font-semibold mb-2">Behandelingen</h3>
-                <p class="text-sm text-gray-200 mb-6 max-w-md">
-                    Highlight specific services or products that are<br>
-                    unique to your business here. It can be your<br>
-                    flagship product, or a service that you've<br>
-                    pioneered. Give it room to shine here.
-                </p>
-
-                <!-- Appointment Button -->
-                <a href="#contact" class="inline-block bg-white text-black font-semibold px-6 py-3 rounded-lg mb-8">
-                    BOOK AN APPOINTMENT
-                </a>
-
-                <!-- Opening Times -->
-                <h4 class="text-xl font-semibold mb-3">Openingstijden</h4>
-                <ul class="text-sm text-gray-200 space-y-1">
-                    <li>Monday: 8am – 7pm</li>
-                    <li>Tuesday: 8am – 5pm</li>
-                    <li>Wednesday: 8am – 5pm</li>
-                    <li>Thursday: 8am – 7pm</li>
-                    <li>Friday: 8am – 5pm</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Google Maps Full Width -->
-    <section class="w-full h-[450px]">
-        <iframe 
-            class="w-full h-full"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2437.288279822349!2d4.890947715951806!3d52.3524589797825!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c609c1d0f507b9%3A0x6e7b1c2b3e8e1a1!2sTweede%20Jan%20van%20der%20Heijdenstraat%2041%2C%201074%20XN%20Amsterdam!5e0!3m2!1sen!2snl!4v1678987654321!5m2!1sen!2snl"
-            style="border:0;" 
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-    </section>
-
-    <footer class="text-center p-4 bg-gray-200 text-sm">
-        © <span id="currentYear"></span> Ido Hair. Alle rechten voorbehouden.
     </footer>
 
+
     <script>
-        // Set current year for copyright
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // 1. Mobile Menu Toggle
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const navLinks = document.getElementById('nav-links');
+            
+            menuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+            
+            // Close mobile menu when a link is clicked
+            navLinks.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    navLinks.classList.remove('active');
+                }
+            });
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('.pdf-header .nav-links a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    // Calculate offset considering the fixed header height
-                    const headerHeight = document.querySelector('.pdf-header').offsetHeight;
-                    const offsetTop = targetElement.offsetTop - headerHeight;
-
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: "smooth"
+            // 2. FAQ Accordion
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+                
+                question.addEventListener('click', () => {
+                    // Close other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                            otherItem.querySelector('.faq-answer').style.maxHeight = null;
+                        }
                     });
-                }
-            });
-        });
-
-        // Highlight active navigation link on scroll
-        const sections = document.querySelectorAll('main section[id]');
-        const navLinks = document.querySelectorAll('.pdf-header .nav-links a');
-
-        const highlightNavLink = () => {
-            let currentActive = '';
-            sections.forEach(section => {
-                const headerHeight = document.querySelector('.pdf-header').offsetHeight;
-                const sectionTop = section.offsetTop - headerHeight - 50; // Adjusted offset
-                const sectionBottom = section.offsetTop + section.offsetHeight;
-
-                if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
-                    currentActive = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').substring(1) === currentActive) {
-                    link.classList.add('active');
-                }
-            });
-        };
-
-        window.addEventListener('scroll', highlightNavLink);
-        window.addEventListener('load', highlightNavLink); // Call on load to set initial active link
-
-        // Gallery Carousel Functionality
-        const galleryTrack = document.getElementById('gallery-track');
-        let isDragging = false;
-        let startX;
-        let scrollLeft;
-
-        if (galleryTrack) {
-            // Mouse drag functionality
-            galleryTrack.addEventListener('mousedown', (e) => {
-                isDragging = true;
-                galleryTrack.classList.add('dragging');
-                startX = e.pageX - galleryTrack.offsetLeft;
-                scrollLeft = galleryTrack.scrollLeft;
-            });
-
-            galleryTrack.addEventListener('mouseleave', () => {
-                isDragging = false;
-                galleryTrack.classList.remove('dragging');
-            });
-
-            galleryTrack.addEventListener('mouseup', () => {
-                isDragging = false;
-                galleryTrack.classList.remove('dragging');
-            });
-
-            galleryTrack.addEventListener('mousemove', (e) => {
-                if (!isDragging) return;
-                e.preventDefault();
-                const x = e.pageX - galleryTrack.offsetLeft;
-                const walk = (x - startX) * 2; // Multiplier for faster scroll
-                galleryTrack.scrollLeft = scrollLeft - walk;
-            });
-
-            // Touch drag functionality
-            galleryTrack.addEventListener('touchstart', (e) => {
-                isDragging = true;
-                startX = e.touches[0].pageX - galleryTrack.offsetLeft;
-                scrollLeft = galleryTrack.scrollLeft;
-            });
-
-            galleryTrack.addEventListener('touchend', () => {
-                isDragging = false;
-            });
-
-            galleryTrack.addEventListener('touchmove', (e) => {
-                if (!isDragging) return;
-                const x = e.touches[0].pageX - galleryTrack.offsetLeft;
-                const walk = (x - startX) * 2;
-                galleryTrack.scrollLeft = scrollLeft - walk;
-            });
-        }
-
-        // Scroll buttons functionality
-        window.scrollGallery = function(direction) {
-            if (galleryTrack) {
-                const scrollAmount = galleryTrack.offsetWidth / 2; // Scroll half the width of the container
-                galleryTrack.scrollBy({
-                    left: direction * scrollAmount,
-                    behavior: 'smooth'
+                    
+                    // Toggle current item
+                    item.classList.toggle('active');
+                    if (item.classList.contains('active')) {
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                    } else {
+                        answer.style.maxHeight = null;
+                    }
                 });
+            });
+            
+            // 3. Review Slider
+            const sliderInner = document.getElementById('review-slider-inner');
+            const reviews = document.querySelectorAll('.review-card');
+            const nextBtn = document.getElementById('next-review');
+            const prevBtn = document.getElementById('prev-review');
+            
+            let currentIndex = 0;
+            let reviewWidth = reviews[0].offsetWidth + 40; // card width + margin
+            
+            // Function to move slider
+            function goToSlide(index) {
+                if (index < 0) {
+                    index = reviews.length - 1;
+                } else if (index >= reviews.length) {
+                    index = 0;
+                }
+                
+                // On mobile, just show one card centered, don't slide if not needed
+                if (window.innerWidth < 768) {
+                   reviewWidth = sliderInner.offsetWidth;
+                   sliderInner.style.transform = 'translateX(' + (-index * reviewWidth) + 'px)';
+                } else {
+                    // On desktop, we center the slider
+                    const offset = (sliderInner.offsetWidth - reviewWidth + 40) / 2;
+                    sliderInner.style.transform = 'translateX(' + (offset - (index * reviewWidth)) + 'px)';
+                }
+
+                currentIndex = index;
             }
-        };
 
-        // Socials Carousel Functionality (renamed from socialVideoTrack)
-        const socialsTrack = document.getElementById('social-track'); // Renamed ID
-        let isSocialsDragging = false;
-        let startSocialsX;
-        let scrollSocialsLeft;
-
-        if (socialsTrack) {
-            // Mouse drag functionality
-            socialsTrack.addEventListener('mousedown', (e) => {
-                isSocialsDragging = true;
-                socialsTrack.classList.add('dragging');
-                startSocialsX = e.pageX - socialsTrack.offsetLeft;
-                scrollSocialsLeft = socialsTrack.scrollLeft;
+            // Recalculate width on resize
+            window.addEventListener('resize', () => {
+                if (window.innerWidth < 768) {
+                    reviewWidth = sliderInner.offsetWidth;
+                } else {
+                    reviewWidth = reviews[0].offsetWidth + 40;
+                }
+                goToSlide(currentIndex);
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                goToSlide(currentIndex + 1);
             });
 
-            socialsTrack.addEventListener('mouseleave', () => {
-                isSocialsDragging = false;
-                socialsTrack.classList.remove('dragging');
+            prevBtn.addEventListener('click', () => {
+                goToSlide(currentIndex - 1);
             });
 
-            socialsTrack.addEventListener('mouseup', () => {
-                isSocialsDragging = false;
-                socialsTrack.classList.remove('dragging');
-            });
+            // Initial position
+            goToSlide(1);
 
-            socialsTrack.addEventListener('mousemove', (e) => {
-                if (!isSocialsDragging) return;
-                e.preventDefault();
-                const x = e.pageX - socialsTrack.offsetLeft;
-                const walk = (x - startSocialsX) * 2; // Multiplier for faster scroll
-                socialsTrack.scrollLeft = scrollSocialsLeft - walk;
-            });
-
-            // Touch drag functionality
-            socialsTrack.addEventListener('touchstart', (e) => {
-                isSocialsDragging = true;
-                startSocialsX = e.touches[0].pageX - socialsTrack.offsetLeft;
-                scrollSocialsLeft = e.touches[0].pageX - socialsTrack.offsetLeft; // Corrected for touch start
-            });
-
-            socialsTrack.addEventListener('touchend', () => {
-                isSocialsDragging = false;
-            });
-
-            socialsTrack.addEventListener('touchmove', (e) => {
-                if (!isSocialsDragging) return;
-                const x = e.touches[0].pageX - socialsTrack.offsetLeft;
-                const walk = (x - startSocialsX) * 2;
-                socialsTrack.scrollLeft = scrollSocialsLeft - walk;
-            });
-        }
-
-        // Scroll buttons functionality for socials gallery
-        window.scrollSocials = function(direction) { // Renamed function
-            if (socialsTrack) {
-                const scrollAmount = socialsTrack.offsetWidth / 2; // Scroll half the width of the container
-                socialsTrack.scrollBy({
-                    left: direction * scrollAmount,
-                    behavior: 'smooth'
-                });
-            }
-        };
-
-        // Mobile menu toggle functionality
-        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const navLinksMobile = document.querySelectorAll('#mobile-menu .nav-link-custom');
-
-        mobileMenuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('open');
-        });
-
-        // Close mobile menu when a link is clicked
-        navLinksMobile.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('open');
-            });
         });
     </script>
 
