@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,256 +7,290 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sauce+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
     
+
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-dark': '#323012',
+                        'gold-accent': '#B08F3D',
+                        'text-light': '#EAE3D9',
+                        'text-dark': '#3a3a3a',
+                        'bg-light': '#fbfaf8',
+                        'border-light': '#e0e0e0',
+                    },
+                    fontFamily: {
+                        sans: ['Open Sauce Sans', 'sans-serif'],
+                        serif: ['EB Garamond', 'serif'],
+                    },
+                    spacing: {
+                        '100': '25rem', // 400px
+                        '120': '30rem', // 480px
+                    }
+                }
+            }
+        }
+    </script>
     
     <link rel="stylesheet" href="style.css">
+
 </head>
-<body>
+<body class="font-sans text-text-dark leading-relaxed bg-bg-light overflow-x-hidden">
 
-    <header class="header">
-        <nav class="navbar container">
-            <div class="nav-logo">
-                <a href="#home"><img src="images/IDO-Hair_logo_goud.png" alt="IDO HAIR Logo" class="header-logo-img"></a>
-            </div>
-            
-            <ul class="nav-links hidden md:flex" id="nav-links">
-                
-                <li><a href="#">Shop</a></li>
-
-                <li class="dropdown">
-                    </li>
-                
-                <li><a href="about.html">About Ido</a></li>
-                <li><a href="#contact">Book now</a></li>
-                <li><a href="#home" class="active">Home</a></li>
-            </ul>
-            
-            <div class="nav-icons hidden md:flex">
-                </div>
-            
-            <button class="mobile-menu-btn block md:hidden" id="mobile-menu-btn" aria-label="Toggle menu">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" id="menu-icon-open">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                </svg>
-            </button>
-        </nav>
-    </header>
-
-    <main>
-
-        <section id="home" class="hero section-dark">
-            <div class="container hero-center-content">
-                
-                <div class="hero-content">
-                    <img src="images/IDO-Hair_logo_goud.png" alt="IDO HAIR Logo" class="hero-logo-img">
-                    
-                    <p>Experience world-class hair services</p>
-                    <a href="#contact" class="btn btn-light">Book an Appointment</a>
-                </div>
-
-                <div class="hero-video-placeholder">
-                    Hier komt een video
-                </div>
-                
-            </div>
-        </section>
-
-        <section id="about" class="welcome section section-light text-center">
-            <div class="container">
-                <h2>Welcome at Ido's Hair.</h2>
-                <p>Located in the heart of De Pijp, Amsterdam. Here, it’s not just about the treatment, it’s about taking a moment for yourself.</p>
-                <p>With a creative eye, high-quality haircare, and personal attention, every detail is tailored to you.</p>
-                <p>Elegant yet relaxed, an oasis where passion for hair and genuine care come together</p>
-                <a href="#services">Read more</a>
-            </div>
-        </section>
-
-        <section id="services" class="services-grid section-light text-center">
-            <div class="container">
-                <h2 class="section-title">Our Services</h2>
-                <div class="grid-4">
-                    
-                    <div class="service-card" style="background-image: url('images/style.png');">
-                        <h3>ALWAYS IN STYLE</h3>
-                        <p class="service-subtitle">STYLERS FOR EVERY HAIR TYPE + TEXTURE</p>
-                    </div>
-                    
-                    <div class="service-card" style="background-image: url('images/woman.png');">
-                        <h3>BIG, BOLD VOLUME</h3>
-                        <p class="service-subtitle">EVERYTHING YOU NEED FOR LUSH, FULL HAIR</p>
-                    </div>
-                    
-                    <div class="service-card" style="background-image: url('images/color.png');">
-                        <h3>Color and Highlights</h3>
-                        <p class="service-subtitle">EXPERT COLORING TECHNIQUES</p>
-                    </div>
-                    
-                    <div class="service-card" style="background-image: url('images/haircut.png');">
-                        <h3>Haircut and Styling</h3>
-                        <p class="service-subtitle">PRECISION CUTS AND MODERN LOOKS</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="consultation" class="consultation section-dark text-center">
-            <div class="container">
-                <h2>Hair consultation</h2>
-                <h3>Discover what truly suits you</h3>
-                <p>Not sure yet what style you’re going for? During a hair diagnosis, we take a close look at your hair texture, scalp, and natural features. Together, we’ll discover which style, length, or color complements you.</p>
-                <p>I take the time to listen to what matters to you. I’ll give honest advice on what your hair needs, what’s achievable, and how to maintain it at home.</p>
-                <p>A hair diagnosis, is when you’re ready for a change or simply want to understand your hair better.</p>
-                <a href="#contact" class="btn btn-light">Book an Appointment</a>
-            </div>
-        </section>
-
-        <div class="image-divider" style="background-image: url('images/hair.png');">
-            </div>
-
-        <section id="faq" class="faq section-white">
-            <div class="container">
-                <h2 class="text-center">More information</h2>
-                
-                <div class="faq-item active">
-                    <div class="faq-question">
-                        <h3>Moet ik bellen voor een afspraak?</h3>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Soms plannen cliënten te weinig tijd in voor hun behandeling en kunnen we om die reden niet al hun wensen uitvoeren. Bijv. highlights, balayage en haarmaskers zijn erg tijdrovend. Om teleurstelling te voorkomen is het verstandig om ons eerst te bellen. Zo kunnen we samen effectief uw perfecte behandeling plannen.<br><br><strong>Bel ons: 020-331 3440</strong></p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>Afspraak annuleren?</h3>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Details about cancelling an appointment can go here.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>Love all, Style all</h3>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Information about the "Love all, Style all" philosophy.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>Waar kan ik parkeren?</h3>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Parking information can be detailed here.</p>
-                    </div>
-                </div>
-                
-            </div>
-        </section>
-
-        <section id="reviews" class="reviews section text-center">
-            <div class="container">
-                <h2>Reviews</h2>
-                <div class="review-slider">
-                    <div class="review-slider-inner" id="review-slider-inner">
-                        
-                        <div class="review-card">
-                            <p>“Great place. Been going here for a bit now. I always book last minute so have had cuts from several different professionals. Everyone is solid. Place is well run and crafts an enjoyable experience.”</p>
-                            <p class="author">Andrew Petryszak</p>
-                        </div>
-                        
-                        <div class="review-card">
-                            <p>“Had a fantastic experience with Will, who gave me a terrific cut, suggested healthy hair maintenance habits and treated me with the utmost respect. Highly recommend the entire experience and will be returning!”</p>
-                            <p class="author">Charles Greenwald</p>
-                        </div>
-
-                        <div class="review-card">
-                            <p>“Great place. Been going here for a bit now. I always book last minute so have had cuts from several different professionals. Everyone is solid. Place is well run and crafts an enjoyable experience.”</p>
-                            <p class="author">Andrew Petryszak</p>
-                        </div>
-                        
-                    </div>
-                </div>
-                
-                <div class="slider-controls">
-                    <button class="slider-btn" id="prev-review">←</button>
-                    <button class="slider-btn" id="next-review">→</button>
-                </div>
-            </div>
-        </section>
-
-        <section id="perks" class="section-white section text-center">
-            <div class="container">
-                <div class="review-perks">
-                    <div class="perk">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h-6.188c-.225-1.015-.86-1.85-1.57-2.587M15 14.25V5.25a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 5.25v9m12 0-3 3m0 0-3-3m3 3V5.25" /></svg>
-                        <h4>SNELLE LEVERING</h4>
-                        <p>Binnen 1 tot 2 werkdagen verzonden</p>
-                    </div>
-                    <div class="perk">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l.003-2.915A11.96 11.96 0 0 1 3.375 6.42a11.93 11.93 0 0 1 3.5-1.619.5.5 0 0 1 .6.324l.63 3.148a.5.5 0 0 1-.3.633A4.9 4.9 0 0 0 5.25 9.61v.837" /><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9.61a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H4.5a.75.75 0 0 1-.75-.75V9.61Zm4.5 0a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H8.25a.75.75 0 0 1-.75-.75V9.61Zm4.5 0a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H12.75a.75.75 0 0 1-.75-.75V9.61Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 12l-.003-2.915a11.96 11.96 0 0 0-1.125-2.665 11.93 11.93 0 0 0-3.5-1.619.5.5 0 0 0-.6.324l-.63 3.148a.5.5 0 0 0 .3.633 4.9 4.9 0 0 1 2.378 1.51v.837M19.5 9.61a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75h-.008a.75.75 0 0 1-.75-.75V9.61Zm-4.5 0a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75h-.008a.75.75 0 0 1-.75-.75V9.61Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 12.75v6m0 0 3-3m-3 3-3-3m3 3V3.75M21 12.75v6m0 0 3-3m-3 3-3-3m3 3V3.75M3 12.75v6m0 0 3-3m-3 3-3-3m3 3V3.75" /></svg>
-                        <h4>GRATIS VERZENDING</h4>
-                        <p>Gratis verzending bij een besteding vanaf 40,- of bij afhalen</p>
-                    </div>
-                    <div class="perk">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" /></svg>
-                        <h4>FIJNE KLANTENSERVICE</h4>
-                        <p>Klantvragen worden binnen 1 werkdag beantwoord</p>
-                    </div>
-                    <div class="perk">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h6m-6 2.25h6M9 16.5v3m0 0v1.5m0-1.5a1.5 1.5 0 0 0 1.5-1.5H7.5A1.5 1.5 0 0 0 9 19.5Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 9.75v10.5m0-10.5a1.5 1.5 0 0 1 1.5-1.5h1.5a1.5 1.5 0 0 1 1.5 1.5v10.5m-4.5 0v-1.5m0 0H12v1.5m3-1.5a1.5 1.5 0 0 0-1.5-1.5h-1.5a1.5 1.5 0 0 0-1.5 1.5v1.5m4.5-1.5v-1.5m0 0v-3.75m0 3.75a1.5 1.5 0 0 1-1.5-1.5H12a1.5 1.5 0 0 1-1.5-1.5v-1.5m3 1.5v-1.5" /></svg>
-                        <h4>VEILIG BETALEN</h4>
-                        <p>Betaal veilig en snel met uitgebreide betaalmogelijkheden</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
+<header class="fixed top-0 left-0 w-full bg-bg-light shadow-sm z-50 border-b border-gray-100">
+  <nav class="max-w-7xl mx-auto px-6 flex justify-between items-center h-20">
     
-    <footer id="contact" class="footer section-dark">
-        <div class="container">
-            <div class="footer-grid">
-                <div>
-                    <a href="#home" class="footer-logo"><img src="images/IDO-Hair_logo_goud.png" alt="IDO HAIR Logo" class="footer-logo-img"></a>
+    <!-- LOGO -->
+    <a href="#home" class="flex items-center">
+      <img src="images/IDO-Hair_logo_goud.png" alt="IDO HAIR Logo" class="h-10 w-auto">
+    </a>
 
-                    <h4>Contact:</h4>
-                    <p>Email: <a href="mailto:info@idoshair.com">info@idoshair.com</a></p>
-                    <p>Phone: <a href="tel:+31020777111">+31 (0) 20 777 111</a></p>
-                    
-                    <div class="address">
-                        <h4>Address:</h4>
-                        <p>Tweede Jan van der Heijdenstraat 41 III, 1074 XN Amsterdam, Netherlands</p>
-                    </div>
+    <!-- HAMBURGER BUTTON -->
+    <button id="menu-btn"
+            class="block md:hidden focus:outline-none"
+            aria-label="Toggle menu">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+           stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+        <path stroke-linecap="round" stroke-linejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+      </svg>
+    </button>
 
-                    <div class="hours">
-                        <h4>Opening Hours:</h4>
-                        <p>Tue - Sun: 10 am - 8 pm</p>
-                        <p>Mon: closed</p>
-                    </div>
+    <!-- NAV LINKS -->
+    <ul id="menu"
+        class="hidden md:flex flex-col md:flex-row md:space-x-8 absolute md:static top-20 left-0 w-full md:w-auto bg-bg-light md:bg-transparent text-center md:text-left py-6 md:py-0 shadow-md md:shadow-none">
+      <li><a href="#shop" class="block px-6 py-2 hover:text-gold-accent">Shop</a></li>
+      <li><a href="#services" class="block px-6 py-2 hover:text-gold-accent">Services</a></li>
+      <li><a href="#about" class="block px-6 py-2 hover:text-gold-accent">About Ido</a></li>
+      <li><a href="#book" class="block px-6 py-2 hover:text-gold-accent">Book Now</a></li>
+      <li><a href="#home" class="block px-6 py-2 hover:text-gold-accent">Home</a></li>
+    </ul>
+
+  </nav>
+</header>
+
+
+<main>
+
+    <section id="home" class="bg-primary-dark text-text-light flex items-center relative py-20" 
+             style="margin-top: 80px; min-height: calc(100vh - 80px);">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col justify-center items-center w-full h-full text-center relative">
+            
+            <div class="flex flex-col items-center pt-10">
+                <img src="images/IDO-Hair_logo_goud.png" alt="IDO HAIR Logo" class="h-auto max-h-[200px] w-auto mx-0">
+                
+                <p class="text-xl mt-6 mb-10">Experience world-class hair services</p>
+                <a href="#contact" class="btn btn-light inline-block font-sans text-xs tracking-wider uppercase border border-text-light py-3 px-7 transition-all duration-300 hover:bg-text-light hover:text-primary-dark">Book an Appointment</a>
+            </div>
+
+            <div class="absolute top-6 right-6 w-72 h-48 bg-bg-light text-text-dark flex items-center justify-center font-serif text-lg p-5 z-10 hidden md:flex">
+                A video will go here
+            </div>
+            
+        </div>
+    </section>
+
+    <section id="about" class="bg-bg-light text-center py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="font-serif text-5xl font-normal mb-8 text-gold-accent">Welcome at Ido's Hair.</h2>
+            <p class="max-w-3xl mx-auto my-4 font-serif text-xl leading-relaxed">Located in the heart of De Pijp, Amsterdam. Here, it’s not just about the treatment, it’s about taking a moment for yourself.</p>
+            <p class="max-w-3xl mx-auto my-4 font-serif text-xl leading-relaxed">With a creative eye, high-quality haircare, and personal attention, every detail is tailored to you.</p>
+            <p class="max-w-3xl mx-auto my-4 font-serif text-xl leading-relaxed">Elegant yet relaxed, an oasis where passion for hair and genuine care come together</p>
+            <a href="#services" class="inline-block mt-6 text-base uppercase text-primary-dark underline underline-offset-4">Read more</a>
+        </div>
+    </section>
+
+    <section id="services" class="bg-bg-light text-center py-10 pb-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="font-serif text-5xl font-normal mb-8 text-primary-dark">Our Services</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-10">
+                
+                <div class="relative overflow-hidden cursor-pointer aspect-square flex flex-col justify-end items-start p-8 bg-cover bg-center" style="background-image: url('images/style.png');">
+                    <h3 class="text-3xl text-white drop-shadow-lg m-0 italic leading-tight">ALWAYS IN STYLE</h3>
+                    <p class="text-white font-sans text-sm tracking-wider uppercase pt-2 pb-1 border-b border-white mt-2 font-medium">STYLERS FOR EVERY HAIR TYPE + TEXTURE</p>
                 </div>
-
-                <div>
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2435.0805362947087!2d4.887961276061321!3d52.35515327202306!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c609c125633b49%3A0xa08542b827e8d530!2sTweede%20Jan%20van%20der%20Heijdenstraat%2041%20III%2C%201074%20XN%20Amsterdam%2C%20Netherlands!5e0!3m2!1sen!2sus!4v1700684200000!5m2!1sen!2sus" 
-                        width="100%" 
-                        height="450" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
+                
+                <div class="relative overflow-hidden cursor-pointer aspect-square flex flex-col justify-end items-start p-8 bg-cover bg-center" style="background-image: url('images/woman.png');">
+                    <h3 class="text-3xl text-white drop-shadow-lg m-0 italic leading-tight">BIG, BOLD VOLUME</h3>
+                    <p class="text-white font-sans text-sm tracking-wider uppercase pt-2 pb-1 border-b border-white mt-2 font-medium">EVERYTHING YOU NEED FOR LUSH, FULL HAIR</p>
+                </div>
+                
+                <div class="relative overflow-hidden cursor-pointer aspect-square flex flex-col justify-end items-start p-8 bg-cover bg-center" style="background-image: url('images/color.png');">
+                    <h3 class="text-3xl text-white drop-shadow-lg m-0 italic leading-tight">Color and Highlights</h3>
+                    <p class="text-white font-sans text-sm tracking-wider uppercase pt-2 pb-1 border-b border-white mt-2 font-medium">EXPERT COLORING TECHNIQUES</p>
+                </div>
+                
+                <div class="relative overflow-hidden cursor-pointer aspect-square flex flex-col justify-end items-start p-8 bg-cover bg-center" style="background-image: url('images/haircut.png');">
+                    <h3 class="text-3xl text-white drop-shadow-lg m-0 italic leading-tight">Haircut and Styling</h3>
+                    <p class="text-white font-sans text-sm tracking-wider uppercase pt-2 pb-1 border-b border-white mt-2 font-medium">PRECISION CUTS AND MODERN LOOKS</p>
                 </div>
             </div>
         </div>
-    </footer>
+    </section>
+
+    <section id="consultation" class="bg-primary-dark text-text-light text-center py-32 px-10">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="font-serif text-5xl font-normal text-text-light mb-2">Hair consultation</h2>
+            <h2 class="font-serif text-5xl font-normal text-text-light mb-8">Discover what truly suits you</h2>
+            <p class="max-w-4xl mx-auto font-serif text-lg leading-relaxed mb-8">Not sure yet what style you’re going for? During a hair diagnosis, we take a close look at your hair texture, scalp, and natural features. Together, we’ll discover which style, length, or color complements you.</p>
+            <p class="max-w-4xl mx-auto font-serif text-lg leading-relaxed mb-8">I take the time to listen to what matters to you. I’ll give honest advice on what your hair needs, what’s achievable, and how to maintain it at home.</p>
+            <p class="max-w-4xl mx-auto font-serif text-lg leading-relaxed mb-8">A hair diagnosis, is when you’re ready for a change or simply want to understand your hair better.</p>
+            <a href="#contact" class="btn btn-light inline-block font-sans text-xs tracking-wider uppercase border border-text-light py-3 px-7 transition-all duration-300 hover:bg-text-light hover:text-primary-dark mt-4">Book an Appointment</a>
+        </div>
+    </section>
+
+    <div class="h-[500px] bg-primary-dark bg-center bg-no-repeat bg-contain" style="background-image: url('images/hair.png'); background-attachment: fixed;">
+        </div>
+
+    <section id="faq" class="bg-white py-24 px-10">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="font-serif text-5xl font-normal text-center text-primary-dark mb-16">More information</h2>
+            
+            <div class="faq-item border-b border-border-light max-w-2xl mx-auto active">
+                <div class="faq-question flex justify-between items-center py-6 cursor-pointer text-xl font-medium font-sans text-text-dark">
+                    <h3>Do I need to call for an appointment?</h3>
+                    <span class="faq-toggle text-3xl font-light text-text-dark transition-transform duration-300 transform rotate-0">+</span>
+                </div>
+                <div class="faq-answer overflow-hidden transition-all duration-400 ease-in-out" style="max-height: 0;">
+                    <p class="pb-6 text-gray-600 text-base">Sometimes clients schedule too little time for their treatment, and for that reason, we cannot fulfill all their wishes. For example, highlights, balayage, and hair masks are very time-consuming. To prevent disappointment, it is wise to call us first. That way, we can effectively plan your perfect treatment together.<br><br><strong class="font-bold">Call us: 020-331 3440</strong></p>
+                </div>
+            </div>
+            
+            <div class="faq-item border-b border-border-light max-w-2xl mx-auto">
+                <div class="faq-question flex justify-between items-center py-6 cursor-pointer text-xl font-medium font-sans text-text-dark">
+                    <h3>Cancel appointment?</h3>
+                    <span class="faq-toggle text-3xl font-light text-text-dark transition-transform duration-300">+</span>
+                </div>
+                <div class="faq-answer overflow-hidden transition-all duration-400 ease-in-out" style="max-height: 0;">
+                    <p class="pb-6 text-gray-600 text-base">Details about cancelling an appointment can go here.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item border-b border-border-light max-w-2xl mx-auto">
+                <div class="faq-question flex justify-between items-center py-6 cursor-pointer text-xl font-medium font-sans text-text-dark">
+                    <h3>Love all, Style all</h3>
+                    <span class="faq-toggle text-3xl font-light text-text-dark transition-transform duration-300">+</span>
+                </div>
+                <div class="faq-answer overflow-hidden transition-all duration-400 ease-in-out" style="max-height: 0;">
+                    <p class="pb-6 text-gray-600 text-base">Information about the "Love all, Style all" philosophy.</p>
+                </div>
+            </div>
+
+            <div class="faq-item border-b border-border-light max-w-2xl mx-auto">
+                <div class="faq-question flex justify-between items-center py-6 cursor-pointer text-xl font-medium font-sans text-text-dark">
+                    <h3>Where can I park?</h3>
+                    <span class="faq-toggle text-3xl font-light text-text-dark transition-transform duration-300">+</span>
+                </div>
+                <div class="faq-answer overflow-hidden transition-all duration-400 ease-in-out" style="max-height: 0;">
+                    <p class="pb-6 text-gray-600 text-base">Parking information can be detailed here.</p>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <section id="reviews" class="text-center py-20 bg-cover bg-center overflow-hidden" style="background-image: url('images/review.jpg');">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="font-serif text-5xl font-semibold text-white mb-16">Reviews</h2>
+            <div class="relative max-w-5xl mx-auto">
+                <div class="flex transition-transform duration-500" id="review-slider-inner">
+                    
+                    <div class="flex-shrink-0 w-full sm:w-[400px] h-[400px] sm:aspect-square bg-white p-10 rounded-lg shadow-lg text-left text-text-dark flex flex-col justify-center items-start mx-5">
+                        <p class="font-serif text-xl leading-relaxed italic">“Great place. Been going here for a bit now. I always book last minute so have had cuts from several different professionals. Everyone is solid. Place is well run and crafts an enjoyable experience.”</p>
+                        <p class="font-sans text-sm font-medium text-gray-600 mt-6 not-italic">Andrew Petryszak</p>
+                    </div>
+                    
+                    <div class="flex-shrink-0 w-full sm:w-[400px] h-[400px] sm:aspect-square bg-white p-10 rounded-lg shadow-lg text-left text-text-dark flex flex-col justify-center items-start mx-5">
+                        <p class="font-serif text-xl leading-relaxed italic">“Had a fantastic experience with Will, who gave me a terrific cut, suggested healthy hair maintenance habits and treated me with the utmost respect. Highly recommend the entire experience and will be returning!”</p>
+                        <p class="font-sans text-sm font-medium text-gray-600 mt-6 not-italic">Charles Greenwald</p>
+                    </div>
+
+                    <div class="flex-shrink-0 w-full sm:w-[400px] h-[400px] sm:aspect-square bg-white p-10 rounded-lg shadow-lg text-left text-text-dark flex flex-col justify-center items-start mx-5">
+                        <p class="font-serif text-xl leading-relaxed italic">“Great place. Been going here for a bit now. I always book last minute so have had cuts from several different professionals. Everyone is solid. Place is well run and crafts an enjoyable experience.”</p>
+                        <p class="font-sans text-sm font-medium text-gray-600 mt-6 not-italic">Andrew Petryszak</p>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="flex justify-center mt-10">
+                <button class="bg-transparent border border-text-light rounded-full w-12 h-12 cursor-pointer mx-2 text-2xl text-text-light hover:bg-text-light hover:text-primary-dark transition duration-300" id="prev-review">←</button>
+                <button class="bg-transparent border border-text-light rounded-full w-12 h-12 cursor-pointer mx-2 text-2xl text-text-light hover:bg-text-light hover:text-primary-dark transition duration-300" id="next-review">→</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="perks" class="bg-white text-center py-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-4xl mx-auto py-10">
+                <div class="flex flex-col items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-gold-accent mb-3"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h-6.188c-.225-1.015-.86-1.85-1.57-2.587M15 14.25V5.25a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 5.25v9m12 0-3 3m0 0-3-3m3 3V5.25" /></svg>
+                    <h4 class="font-sans text-[11px] tracking-wider uppercase font-bold mb-1 text-primary-dark">FAST DELIVERY</h4>
+                    <p class="text-sm">Shipped within 1 to 2 working days</p>
+                </div>
+                <div class="flex flex-col items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-gold-accent mb-3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l.003-2.915A11.96 11.96 0 0 1 3.375 6.42a11.93 11.93 0 0 1 3.5-1.619.5.5 0 0 1 .6.324l.63 3.148a.5.5 0 0 1-.3.633A4.9 4.9 0 0 0 5.25 9.61v.837" /><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9.61a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H4.5a.75.75 0 0 1-.75-.75V9.61Zm4.5 0a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H8.25a.75.75 0 0 1-.75-.75V9.61Zm4.5 0a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H12.75a.75.75 0 0 1-.75-.75V9.61Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 12l-.003-2.915a11.96 11.96 0 0 0-1.125-2.665 11.93 11.93 0 0 0-3.5-1.619.5.5 0 0 0-.6.324l-.63 3.148a.5.5 0 0 0 .3.633 4.9 4.9 0 0 1 2.378 1.51v.837M19.5 9.61a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75h-.008a.75.75 0 0 1-.75-.75V9.61Zm-4.5 0a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75h-.008a.75.75 0 0 1-.75-.75V9.61Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 12.75v6m0 0 3-3m-3 3-3-3m3 3V3.75M21 12.75v6m0 0 3-3m-3 3-3-3m3 3V3.75M3 12.75v6m0 0 3-3m-3 3-3-3m3 3V3.75" /></svg>
+                    <h4 class="font-sans text-[11px] tracking-wider uppercase font-bold mb-1 text-primary-dark">FREE SHIPPING</h4>
+                    <p class="text-sm">Free shipping on orders over €40 or upon pickup</p>
+                </div>
+                <div class="flex flex-col items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-gold-accent mb-3"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" /></svg>
+                    <h4 class="font-sans text-[11px] tracking-wider uppercase font-bold mb-1 text-primary-dark">EXCELLENT CUSTOMER SERVICE</h4>
+                    <p class="text-sm">Customer questions are answered within 1 working day</p>
+                </div>
+                <div class="flex flex-col items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-gold-accent mb-3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h6m-6 2.25h6M9 16.5v3m0 0v1.5m0-1.5a1.5 1.5 0 0 0 1.5-1.5H7.5A1.5 1.5 0 0 0 9 19.5Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 9.75v10.5m0-10.5a1.5 1.5 0 0 1 1.5-1.5h1.5a1.5 1.5 0 0 1 1.5 1.5v10.5m-4.5 0v-1.5m0 0H12v1.5m3-1.5a1.5 1.5 0 0 0-1.5-1.5h-1.5a1.5 1.5 0 0 0-1.5 1.5v1.5m4.5-1.5v-1.5m0 0v-3.75m0 3.75a1.5 1.5 0 0 1-1.5-1.5H12a1.5 1.5 0 0 1-1.5-1.5v-1.5m3 1.5v-1.5" /></svg>
+                    <h4 class="font-sans text-[11px] tracking-wider uppercase font-bold mb-1 text-primary-dark">SECURE PAYMENT</h4>
+                    <p class="text-sm">Pay safely and quickly with extensive payment options</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer id="contact" class="bg-primary-dark text-text-light py-16 pt-20 pb-5">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 pb-8 text-center md:text-left">
+            <div class="flex flex-col items-center md:items-start">
+                <a href="#home"><img src="images/IDO-Hair_logo_goud.png" alt="IDO HAIR Logo" class="h-16 w-auto mb-5"></a>
+
+                <h4 class="text-lg text-gold-accent font-semibold mt-5 mb-2">Contact:</h4>
+                <p class="text-base leading-relaxed"><span class="text-text-light">Email: </span><a href="mailto:info@idoshair.com" class="text-text-light hover:text-gold-accent">info@idoshair.com</a></p>
+                <p class="text-base leading-relaxed"><span class="text-text-light">Phone: </span><a href="tel:+31020777111" class="text-text-light hover:text-gold-accent">+31 (0) 20 777 111</a></p>
+                
+                <div class="address mt-7">
+                    <h4 class="text-lg text-gold-accent font-semibold mb-2">Address:</h4>
+                    <p class="text-base leading-relaxed">Tweede Jan van der Heijdenstraat 41 III, 1074 XN Amsterdam, Netherlands</p>
+                </div>
+
+                <div class="hours mt-7">
+                    <h4 class="text-lg text-gold-accent font-semibold mb-2">Opening Hours:</h4>
+                    <p class="text-base leading-relaxed">Tue - Sun: 10 am - 8 pm</p>
+                    <p class="text-base leading-relaxed">Mon: closed</p>
+                </div>
+            </div>
+
+            <div>
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2435.0805362947087!2d4.887961276061321!3d52.35515327202306!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c609c125633b49%3A0xa08542b827e8d530!2sTweede%20Jan%20van%20der%20Heijdenstraat%2041%20III%2C%201074%20XN%20Amsterdam%2C%20Netherlands!5e0!3m2!1sen!2sus!4v1700684200000!5m2!1sen!2sus" 
+                    width="100%" 
+                    height="450" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade"
+                    class="max-w-full">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</footer>
 
 
 <script src="script.js"></script> </body>
