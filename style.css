@@ -1,3 +1,20 @@
-#menu {
-  transition: opacity 0.3s ease;
+@font-face {
+  font-family: 'Orpheus Pro';
+  src: url('fonts/OrpheusPro-Regular.woff2') format('woff2'),
+       url('fonts/OrpheusPro-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Orpheus Pro';
+  src: url('fonts/OrpheusPro-Bold.woff2') format('woff2'),
+       url('fonts/OrpheusPro-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Apply globally */
+body {
+  font-family: 'Orpheus Pro', serif;
 }
