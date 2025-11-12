@@ -8,7 +8,6 @@ if (menuBtn && mobileMenu) {
   });
 }
 
-
 // === FAQ ACCORDION ===
 const faqItems = document.querySelectorAll('.faq-item');
 
