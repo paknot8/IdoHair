@@ -3,7 +3,7 @@ Base & Variables
 -------------------
 */
 :root {
-    --color-dark-bg: #55513A;
+    --color-dark-bg: #323012;
     --color-light-bg: #fbfaf8;
     --color-text-dark: #3a3a3a;
     --color-text-light: #EAE3D9;
@@ -246,30 +246,31 @@ Hero Section (#home)
     margin-bottom: 40px;
 }
 
-/* Video placeholder uses absolute position on desktop */
+/* Video placeholder positioning and sizing (Applies to Desktop by default) */
 .hero-video-placeholder {
-    position: absolute; /* Default to absolute for desktop positioning */
-    top: 40px;
-    right: 40px;
+    /* Default to absolute for desktop positioning */
+    position: absolute; 
+    
+    top: 24px;
+    right: 24px;
+    
     width: 300px;
     height: 200px; /* Base dimensions for desktop */
     aspect-ratio: 1.5; /* Lock aspect ratio (300px width / 200px height = 1.5) */
 
-    background-color: var(--color-light-bg);
-    color: var(--color-text-dark);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-family: var(--font-serif);
-    font-size: 18px;
-    padding: 20px;
+    /* REMOVED: background-color and padding that created the border effect */
+    background-color: transparent; 
+    padding: 0; 
+    
     z-index: 50;
+    overflow: hidden; /* Ensures video doesn't bleed outside the box */
 }
 
 
 /* Media Query for Mobile (reverts to relative positioning and full width) */
 @media (max-width: 1024px) {
+    /* ... existing mobile styles ... */
+    
     .hero-video-placeholder {
         position: relative; /* Resets to normal flow */
         top: 0;
@@ -277,9 +278,15 @@ Hero Section (#home)
         /* Ensures the logo (first in HTML) appears above the video (second in HTML) */
         order: 2; 
         
-        width: 80%; 
-        max-width: 300px; 
-        margin: 40px auto 0 auto; /* Margin above the button */
+        /* Full width and centered */
+        width: 100%; 
+        max-width: 100%; 
+        
+        /* Use a common video aspect ratio (16:9 = 1.777) for a standard video look on mobile */
+        aspect-ratio: 1.777; 
+        
+        /* Use container padding instead of margin to align it with content */
+        margin: 40px 0 0 0;
     }
     
     .hero-content {
