@@ -1,13 +1,12 @@
 // === MOBILE NAVIGATION TOGGLE ===
 const menuBtn = document.getElementById('menu-btn');
-const menu = document.getElementById('menu');
+const mobileMenu = document.getElementById('mobile-menu');
 
-if (menuBtn && menu) {
+if (menuBtn && mobileMenu) {
   menuBtn.addEventListener('click', () => {
-    menu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('hidden');
   });
 }
-
 
 
 // === FAQ ACCORDION ===
