@@ -141,9 +141,10 @@ Header & Navbar
     width: auto;
 }
 
+/* Default Desktop State */
 .nav-links {
     list-style: none;
-    display: flex;
+    display: flex; /* Display navigation links */
     gap: 30px;
     align-items: center;
 }
@@ -181,7 +182,7 @@ Header & Navbar
 }
 
 .mobile-menu-btn {
-    display: none;
+    display: none; /* Hide hamburger menu by default on desktop */
     background: none;
     border: none;
     cursor: pointer;
@@ -788,6 +789,7 @@ Media Queries
 @media (max-width: 992px) {
     .nav-links {
         gap: 20px;
+        transform: translateY(-100%);
     }
 
     .grid-4 {
@@ -857,6 +859,8 @@ Media Queries
     }
 
     .nav-links {
+        display: flex; /* Keep flex for vertical stacking */
+        transform: translateY(-100%); /* Start hidden off-screen */
         position: absolute;
         top: 80px; /* Below the header */
         left: 0;
@@ -898,9 +902,9 @@ Media Queries
     .nav-icons {
         display: none; /* Hide icons on mobile for space */
     }
-
+    
     .mobile-menu-btn {
-        display: block;
+        display: block; /* Show hamburger icon on mobile */
         font-size: 28px;
         color: var(--color-text-dark);
     }
