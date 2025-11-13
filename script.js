@@ -1,22 +1,32 @@
 // === MOBILE NAVIGATION TOGGLE ===
+// const menuBtn = document.getElementById('menu-btn');
+// const mobileMenu = document.getElementById('mobile-menu');
+
+// if (menuBtn && mobileMenu) {
+//   menuBtn.addEventListener('click', (e) => {
+//     e.stopPropagation();
+//     mobileMenu.classList.toggle('hidden');
+//   });
+
+//   // Close mobile menu when clicking outside
+//   document.addEventListener('click', (e) => {
+//     if (!mobileMenu.classList.contains('hidden') &&
+//         !e.target.closest('#mobile-menu') &&
+//         !e.target.closest('#menu-btn')) {
+//       mobileMenu.classList.add('hidden');
+//     }
+//   });
+// }
+
 const menuBtn = document.getElementById('menu-btn');
-const mobileMenu = document.getElementById('mobile-menu');
+const menu = document.getElementById('menu');
 
-if (menuBtn && mobileMenu) {
-  menuBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    mobileMenu.classList.toggle('hidden');
-  });
-
-  // Close mobile menu when clicking outside
-  document.addEventListener('click', (e) => {
-    if (!mobileMenu.classList.contains('hidden') &&
-        !e.target.closest('#mobile-menu') &&
-        !e.target.closest('#menu-btn')) {
-      mobileMenu.classList.add('hidden');
-    }
+if (menuBtn && menu) {
+  menuBtn.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
   });
 }
+
 
 
 // === FAQ ACCORDION ===
