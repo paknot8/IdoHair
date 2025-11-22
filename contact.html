@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Ido Hair</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sauce+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-dark': '#323012',
+                        'gold-accent': '#B08F3D',
+                        'text-light': '#EAE3D9',
+                        'text-dark': '#3a3a3a',
+                        'bg-light': '#fbfaf8',
+                        'border-light': '#e0e0e0',
+                    },
+                    fontFamily: {
+                        orpheus: ['Orpheus Pro', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="font-orpheus bg-bg-light text-text-dark">
+
+<!-- STICKY BUTTON -->
+<a href="contact.html" 
+   class="fixed bottom-6 left-6 z-50 bg-gold-accent text-white font-sans uppercase tracking-wider py-2.5 px-4 text-sm rounded-md shadow-md hover:bg-[#9a7a32] transition">
+  Make Appointment
+</a>
+
+<!-- HEADER -->
+ <header class="fixed top-0 left-0 w-full bg-[#EFE9DF] z-50 shadow-sm">
+    <nav class="max-w-7xl mx-auto px-6 flex items-center justify-between h-20">
+
+      <!-- LEFT: LOGO -->
+      <a href="index.html" class="flex items-center">
+        <img src="images/IDO-Hair_logo_goud.png" alt="IDO HAIR Logo" class="h-10 w-auto">
+      </a>
+
+      <!-- NAV LINKS (shared desktop + mobile) -->
+      <ul id="menu"
+        class="hidden lg:flex lg:space-x-8 font-sans text-[15px] text-gray-800 flex-col lg:flex-row lg:items-center absolute lg:static top-20 left-0 w-full lg:w-auto bg-[#EFE9DF] lg:bg-transparent shadow-md lg:shadow-none py-6 lg:py-0 space-y-4 lg:space-y-0 text-center lg:text-left">
+
+        <!-- SHOP -->
+        <li class="relative dropdown">
+          <button
+            class="flex items-center gap-1 justify-center lg:justify-start hover:text-[#B08F3D] focus:outline-none w-full">
+            Shop
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 transition-transform duration-200" fill="none"
+              viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div
+            class="dropdown-menu hidden absolute lg:absolute left-0 top-full bg-white shadow-lg mt-2 rounded-md min-w-[200px] lg:text-left text-center">
+            <a href="shop.html" class="block px-4 py-2 hover:bg-gray-100">Shampoo</a>
+            <a href="shop.html" class="block px-4 py-2 hover:bg-gray-100">Conditioner</a>
+            <a href="shop.html" class="block px-4 py-2 hover:bg-gray-100">Styling</a>
+          </div>
+        </li>
+
+        <!-- SERVICES -->
+        <li class="relative dropdown">
+          <button
+            class="flex items-center gap-1 justify-center lg:justify-start hover:text-[#B08F3D] focus:outline-none w-full">
+            Services
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 transition-transform duration-200" fill="none"
+              viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div
+            class="dropdown-menu hidden absolute lg:absolute left-0 top-full bg-white shadow-lg mt-2 rounded-md min-w-[200px] lg:text-left text-center">
+            <a href="services.html" class="block px-4 py-2 hover:bg-gray-100">Haircut</a>
+            <a href="services.html" class="block px-4 py-2 hover:bg-gray-100">Coloring</a>
+            <a href="services.html" class="block px-4 py-2 hover:bg-gray-100">Treatment</a>
+          </div>
+        </li>
+
+        <li><a href="about.html" class="block hover:text-[#B08F3D]">About Ido</a></li>
+
+        <!-- BOOK NOW -->
+        <li class="relative dropdown">
+          <button
+            class="flex items-center gap-1 justify-center lg:justify-start hover:text-[#B08F3D] focus:outline-none w-full">
+            Book now
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 transition-transform duration-200" fill="none"
+              viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div
+            class="dropdown-menu hidden absolute lg:absolute left-0 top-full bg-white shadow-lg mt-2 rounded-md min-w-[200px] lg:text-left text-center">
+            <a href="index.html#book" class="block px-4 py-2 hover:bg-gray-100">Book Haircut</a>
+            <a href="index.html#faq" class="block px-4 py-2 hover:bg-gray-100">Book Haircut Consult</a>
+          </div>
+        </li>
+
+        <li><a href="index.html" class="block hover:text-[#B08F3D]">Home</a></li>
+      </ul>
+
+      <!-- RIGHT: ICONS -->
+      <div class="hidden md:flex items-center space-x-4 text-gray-700">
+        <button class="hover:text-[#B08F3D]" aria-label="Search">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="m21 21-4.35-4.35m0 0A7.5 7.5 0 1 0 4.5 4.5a7.5 7.5 0 0 0 12.15 12.15Z" />
+          </svg>
+        </button>
+        <button class="hover:text-[#B08F3D]" aria-label="Location">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M12 21.75s8.25-6.75 8.25-12A8.25 8.25 0 0 0 3.75 9.75c0 5.25 8.25 12 8.25 12Z" />
+          </svg>
+        </button>
+        <button class="hover:text-[#B08F3D]" aria-label="Favorites">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+          </svg>
+        </button>
+        <button class="hover:text-[#B08F3D]" aria-label="Account">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M15.75 7.5a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.5 20.25a8.25 8.25 0 1 1 15 0H4.5Z" />
+          </svg>
+        </button>
+        <button class="hover:text-[#B08F3D]" aria-label="Cart">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M2.25 3h1.386c.51 0 .955.343 1.08.835L5.7 8.25h12.03a.75.75 0 0 1 .728.91l-1.5 6A.75.75 0 0 1 16.23 16.5H7.77a.75.75 0 0 1-.728-.59L4.72 4.91A.75.75 0 0 0 3.96 4.5H2.25m16.5 16.5a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm-9 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- MOBILE MENU BUTTON -->
+      <button id="menu-btn" class="block lg:hidden focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+          class="w-7 h-7 text-gray-800">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+<!-- CONTACT SECTION -->
+<section class="pt-40 pb-28 px-6 text-center max-w-3xl mx-auto">
+    <h1 class="text-5xl font-serif text-gold-accent mb-6">Contact</h1>
+    <p class="text-lg font-sans mb-10">
+        Get in touch for appointments, questions or personal advice.
+    </p>
+
+    <div class="space-y-6 text-lg font-sans">
+      <p><strong>Phone:</strong> <a href="tel:+31020777111" class="text-gold-accent hover:underline">+31 (0) 20 777 111</a></p>
+      <p><strong>Email:</strong> <a href="mailto:info@idoshair.com" class="text-gold-accent hover:underline">info@idoshair.com</a></p>
+      <p><strong>Address:</strong><br>Tweede Jan van der Heijdenstraat 41 III<br>1074 XN Amsterdam</p>
+      <p><strong>Opening hours:</strong><br>Tue – Sun: 10:00 – 20:00<br>Mon: Closed</p>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-primary-dark text-text-light py-12 text-center">
+  <img src="images/IDO-Hair_logo_goud.png" alt="IDO HAIR Logo" class="h-16 w-auto mx-auto mb-6">
+
+  <div class="space-y-2 text-base">
+    <p>Email: info@idoshair.com</p>
+    <p>Phone: +31 (0) 20 777 111</p>
+    <p>Address: Tweede Jan van der Heijdenstraat 41 III, Amsterdam</p>
+  </div>
+
+  <div class="mt-6 text-sm">
+    © <span id="year"></span> IDO’s Hair. All rights reserved.
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
